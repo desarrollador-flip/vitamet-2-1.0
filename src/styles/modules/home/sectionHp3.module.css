@@ -1,0 +1,296 @@
+.sectionContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--white-color);
+  padding: 20px;
+  gap: 30px;
+}
+
+.sectionContainer header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.sectionContainer header h2 {
+  font-size: 16px;
+  color: var(--blue-color);
+}
+
+.sectionContainer header h3 {
+  font-size: 16px;
+  color: var(--black-color);
+}
+
+.pasosContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 335px;
+  gap: 15px;
+}
+
+.paso1 {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  background-color: var(--white-color);
+  box-shadow: -1px 4px 15px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  width: 335px;
+  height: 280px;
+  padding: 0 15px;
+  gap: 20px;
+}
+
+.paso2 {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  background-color: var(--black-color);
+  box-shadow: -1px 4px 15px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  width: 160px;
+  height: 290px;
+  padding: 0 15px;
+  gap: 20px;
+}
+
+.paso3 {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  background-color: var(--green-color);
+  box-shadow: -1px 4px 15px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  width: 160px;
+  height: 290px;
+  padding: 0 15px;
+  gap: 20px;
+}
+
+.paso4 {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  background-color: var(--blue-color);
+  box-shadow: -1px 4px 15px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  width: 335px;
+  height: 200px;
+  padding: 0 15px;
+  gap: 20px;
+}
+
+.paso1 div,
+.paso2 div,
+.paso3 div,
+.paso4 div {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  gap: 10px;
+}
+
+.paso1 h4,
+.paso2 h4,
+.paso3 h4 {
+  font-size: 32px;
+}
+
+.paso1 h4,
+.paso3 h4 {
+  color: var(--black-color);
+}
+
+.paso2 h4 {
+  color: var(--white-color);
+}
+
+.paso1 h3,
+.paso2 h3,
+.paso3 h3 {
+  font-size: 16px;
+}
+
+.paso4 h3 {
+  font-size: 20px;
+}
+
+.paso1 h3 {
+  color: var(--blue-color);
+}
+
+.paso2 h3,
+.paso4 h3 {
+  color: var(--white-color);
+}
+
+.paso1 p,
+.paso2 p,
+.paso3 p,
+.paso4 p {
+  font-size: 16px;
+}
+
+.paso1 p,
+.paso3 p {
+  color: var(--black-color);
+}
+
+.paso2 p,
+.paso4 p {
+  color: var(--white-color);
+}
+
+.link {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: var(--blue-color);
+  gap: 10px;
+}
+
+.link img {
+  width: 16px;
+}
+
+@media (min-width: 576px) {
+  .sectionContainer header h3 {
+    font-size: 26px;
+  }
+
+  .pasosContainer {
+    width: 540px;
+    gap: 20px;
+  }
+
+  .paso1 {
+    justify-content: start;
+    width: 540px;
+    height: 230px;
+    padding: 20px 15px;
+  }
+
+  .paso2 {
+    justify-content: start;
+    width: 260px;
+    height: 230px;
+    padding: 20px 15px;
+  }
+
+  .paso3 {
+    justify-content: start;
+    width: 260px;
+    height: 230px;
+    padding: 20px 15px;
+  }
+
+  .paso4 {
+    flex-direction: row;
+    align-items: center;
+    width: 540px;
+    height: 150px;
+    padding: 0 20px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .sectionContainer {
+    gap: 40px;
+  }
+
+  .sectionContainer header h3 {
+    font-size: 32px;
+  }
+
+  .pasosContainer {
+    align-items: start;
+    width: 1110px;
+  }
+
+  .paso1 {
+    width: 790px;
+    height: 250px;
+  }
+
+  .paso2 {
+    width: 300px;
+    height: 250px;
+  }
+
+  .paso3 {
+    width: 300px;
+    height: 250px;
+    padding: 20px 20px;
+  }
+
+  .paso4 {
+    width: 790px;
+    height: 200px;
+    padding: 0 40px;
+    gap: 200px;
+  }
+
+  .paso1 div {
+    width: 540px;
+  }
+
+  .paso1 h4,
+  .paso2 h4,
+  .paso3 h4 {
+    font-size: 42px;
+  }
+
+  .paso1 h3,
+  .paso2 h3,
+  .paso3 h3 {
+    font-size: 22px;
+  }
+
+  .paso4 h3 {
+    font-size: 22px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .pasosContainer {
+    width: 1280px;
+  }
+
+  .paso1 {
+    width: 860px;
+    height: 300px;
+    padding: 40px 50px;
+  }
+
+  .paso2 {
+    width: 400px;
+    height: 300px;
+    padding: 40px 40px;
+  }
+
+  .paso3 {
+    width: 400px;
+    height: 300px;
+    padding: 40px 50px;
+  }
+
+  .paso4 {
+    width: 860px;
+    height: 250px;
+    padding: 0 50px;
+  }
+}

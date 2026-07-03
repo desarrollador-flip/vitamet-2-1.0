@@ -1,29 +1,40 @@
-.boton-1 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    text-decoration: none;
-    border: none;
-    background-color: var(--green-color);
-    box-shadow: -6px 4px 10px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease-in-out;
-    color: var(--black-color);
-    border-radius: 10px;
-    font-size: 16px;
-    gap: 10px;
-    padding: 20px 40px;
+.boton-1,
+.boton-2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  text-decoration: none;
+  border: none;
+  background-color: var(--green-color);
+  box-shadow: -6px 4px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease-in-out;
+  color: var(--black-color);
+  border-radius: 10px;
+  font-size: 16px;
+  gap: 10px;
+  padding: 20px 40px;
+}
+
+.boton-2 {
+  background-color: var(--white-color);
+  color: var(--blue-color);
+  padding: 20px 35px;
 }
 
 .boton-1 img {
-    width: 15px;
-    z-index: 1;
+  width: 15px;
+  z-index: 1;
 }
 
-.boton-1:hover {
+@media (min-width: 1200px) {
+  .boton-1:hover,
+  .boton-2:hover {
     background: var(--white-color);
-}
+  }
 
-.boton-1:active {
+  .boton-1:active,
+  .boton-2:active {
     transform: scale(0.9);
+  }
 }
