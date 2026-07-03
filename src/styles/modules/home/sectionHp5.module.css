@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: center;
   background-color: var(--white-color);
-  padding: 40px 20px;
+  padding: 30px 20px;
   padding-bottom: 80px;
   gap: 30px;
 }
@@ -123,6 +123,7 @@
 @media (min-width: 1200px) {
   .sectionContainer {
     gap: 40px;
+    padding: 40px 20px;
     padding-bottom: 130px;
   }
 
