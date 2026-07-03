@@ -1,0 +1,147 @@
+.sectionContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--white-color);
+  padding: 40px 20px;
+  padding-bottom: 80px;
+  gap: 30px;
+}
+
+.sectionContainer header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 335px;
+  gap: 10px;
+}
+
+.sectionContainer header h2 {
+  font-size: 16px;
+  color: var(--blue-color);
+}
+
+.sectionContainer header h3 {
+  font-size: 16px;
+  color: var(--black-color);
+}
+
+.rutasContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+
+.ruta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  background-color: var(--white-color);
+  box-shadow: -1px 4px 15px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  width: 334px;
+  gap: 20px;
+}
+
+.rutaHeader {
+  position: relative;
+}
+
+.rutaHeader img:nth-child(1) {
+  border-radius: 20px 20px 0 0;
+  width: 334px;
+}
+
+.rutaHeader img:nth-child(2) {
+  position: absolute;
+  bottom: 20px;
+  left: 15px;
+  width: 30px;
+}
+
+.rutasContenido {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  gap: 20px;
+  padding: 0 15px;
+  padding-bottom: 20px;
+}
+
+.rutasContenido h3 {
+  font-size: 24px;
+}
+
+.rutasContenido p {
+  color: var(--black-color);
+  font-size: 16px;
+}
+
+.link {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  gap: 10px;
+}
+
+.link img {
+  width: 16px;
+}
+
+.ruta1 h3,
+.ruta3 h3,
+.ruta1 a,
+.ruta3 a {
+  color: var(--blue-color);
+}
+
+.ruta2 h3,
+.ruta2 a {
+  color: var(--green-color);
+}
+
+@media (min-width: 576px) {
+  .sectionContainer header {
+    width: 550px;
+  }
+
+  .sectionContainer header h3 {
+    font-size: 26px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .sectionContainer {
+    gap: 40px;
+    padding-bottom: 130px;
+  }
+
+  .sectionContainer header {
+    width: 1110px;
+  }
+
+  .sectionContainer header h3 {
+    font-size: 32px;
+  }
+
+  .rutasContainer {
+    flex-direction: row;
+    gap: 50px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .rutasContainer {
+    gap: 140px;
+  }
+}

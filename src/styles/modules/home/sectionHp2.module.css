@@ -1,228 +1,228 @@
 .sectionContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--white-color);
-    padding: 40px 20px;
-    padding-bottom: 20px;
-    gap: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--white-color);
+  padding: 40px 20px;
+  padding-bottom: 20px;
+  gap: 40px;
 }
 
 .sectionContainer header {
-    margin-bottom: 30px;
-    width: 335px;
+  margin-bottom: 30px;
+  width: 335px;
 }
 
 .sectionContainer header h2 {
-    font-size: 20px;
-    color: var(--black-color);
+  font-size: 20px;
+  color: var(--black-color);
 }
 
 .palomas {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: start;
-    justify-content: center;
-    gap: 20px;
-    width: 335px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: start;
+  justify-content: center;
+  gap: 20px;
+  width: 335px;
 }
 
 .paloma {
-    display: flex;
-    align-items: center;
-    justify-content: start;
-    gap: 20px;
-    width: 335px;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 20px;
+  width: 335px;
 }
 
 .paloma div:nth-child(1) {
-    display: flex;
-    justify-content: center;
-    background-color: var(--green-color);
-    border-radius: 5px;
-    width: 50px;
-    height: 50px;
-    padding: 5px;
+  display: flex;
+  justify-content: center;
+  background-color: var(--green-color);
+  border-radius: 5px;
+  width: 50px;
+  height: 50px;
+  padding: 5px;
 }
 
 .paloma img {
-    box-shadow: -6px 4px 10px rgba(0, 0, 0, 0.2);
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+  box-shadow: -6px 4px 10px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .paloma h3 {
-    font-size: 18px;
-    color: var(--black-color);
+  font-size: 18px;
+  color: var(--black-color);
 }
 
 .paloma p {
-    font-size: 16px;
-    color: var(--black-color);
+  font-size: 16px;
+  color: var(--black-color);
 }
 
 .imgs {
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    justify-content: center;
-    color: var(--white-color);
-    gap: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  color: var(--white-color);
+  gap: 20px;
 }
 
 .imagen1 div,
 .imagen2 div {
-    box-shadow: -6px 4px 10px rgba(0, 0, 0, 0.2);
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    justify-content: center;
-    border-radius: 5px;
-    padding: 20px 15px;
-    width: 335px;
+  box-shadow: -6px 4px 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  border-radius: 5px;
+  padding: 20px 15px;
+  width: 335px;
 }
 
 .containerImg1 {
-    background-color: var(--blue-color);
+  background-color: var(--blue-color);
 }
 
 .containerImg2 {
-    background-color: var(--green-color);
-    color: var(--black-color);
+  background-color: var(--green-color);
+  color: var(--black-color);
 }
 
 .imagen1 h3,
 .imagen2 h3 {
-    font-size: 28px;
+  font-size: 28px;
 }
 
 @media (min-width: 576px) {
-    .sectionContainer {
-        gap: 60px;
-    }
+  .sectionContainer {
+    gap: 60px;
+  }
 
-    .sectionContainer header {
-        width: 550px;
-    }
+  .sectionContainer header {
+    width: 550px;
+  }
 
-    .sectionContainer header h2 {
-        font-size: 32px;
-    }
+  .sectionContainer header h2 {
+    font-size: 32px;
+  }
 
-    .palomas {
-        gap: 30px 10px;
-        width: 550px;
-    }
+  .palomas {
+    gap: 30px 10px;
+    width: 550px;
+  }
 
-    .paloma {
-        align-items: start;
-        width: 270px;
-    }
+  .paloma {
+    align-items: start;
+    width: 270px;
+  }
 
-    .imgs {
-        flex-direction: row;
-    }
+  .imgs {
+    flex-direction: row;
+  }
 
-    .imagen1 div,
-    .imagen2 div {
-        border-radius: 10px;
-        width: 265px;
-    }
+  .imagen1 div,
+  .imagen2 div {
+    border-radius: 10px;
+    width: 265px;
+  }
 
-    .containerImg2 {
-        margin-bottom: 20px;
-    }
+  .containerImg2 {
+    margin-bottom: 20px;
+  }
 }
 
 @media (min-width: 768px) {
-    .sectionContainer header h2 {
-        padding-bottom: 20px;
-    }
+  .sectionContainer header h2 {
+    padding-bottom: 20px;
+  }
 
-    .sectionContainer header p {
-        color: var(--black-color);
-        font-size: 16px;
-    }
+  .sectionContainer header p {
+    color: var(--black-color);
+    font-size: 16px;
+  }
 
-    .imgs {
-        gap: 40px;
-    }
+  .imgs {
+    gap: 40px;
+  }
 
-    .imagen1 {
-        display: flex;
-        flex-direction: column;
-    }
+  .imagen1 {
+    display: flex;
+    flex-direction: column;
+  }
 
-    .imagen2 {
-        display: flex;
-        flex-direction: column-reverse;
-    }
+  .imagen2 {
+    display: flex;
+    flex-direction: column-reverse;
+  }
 
-    .imagen1 img,
-    .imagen2 img {
-        box-shadow: -6px 4px 10px rgba(0, 0, 0, 0.2);
-        border-radius: 10px;
-    }
+  .imagen1 img,
+  .imagen2 img {
+    box-shadow: -6px 4px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+  }
 
-    .imagen1 div,
-    .imagen2 div {
-        width: 244px;
-    }
+  .imagen1 div,
+  .imagen2 div {
+    width: 244px;
+  }
 }
 
 @media (min-width: 1200px) {
-    .sectionContainer {
-        flex-direction: row;
-        align-items: start;
-        padding: 60px 20px;
-        padding-bottom: 20px;
-        gap: 20px;
-    }
+  .sectionContainer {
+    flex-direction: row;
+    align-items: start;
+    padding: 60px 20px;
+    padding-bottom: 20px;
+    gap: 20px;
+  }
 
-    .sectionContainer header p {
-        font-size: 16px;
-    }
+  .sectionContainer header p {
+    font-size: 16px;
+  }
 
-    .palomas {
-        width: 570px;
-    }
+  .palomas {
+    width: 570px;
+  }
 
-    .paloma {
-        width: 280px;
-    }
+  .paloma {
+    width: 280px;
+  }
 
-    .imgs {
-        gap: 20px;
-    }
+  .imgs {
+    gap: 20px;
+  }
 }
 
 @media (min-width: 1400px) {
-    .sectionContainer {
-        gap: 90px;
-    }
+  .sectionContainer {
+    gap: 90px;
+  }
 
-    .sectionContainer header {
-        width: 680px;
-    }
+  .sectionContainer header {
+    width: 680px;
+  }
 
-    .sectionContainer header h2 {
-        font-size: 38px;
-    }
+  .sectionContainer header h2 {
+    font-size: 38px;
+  }
 
-    .sectionContainer header p {
-        font-size: 16px;
-    }
+  .sectionContainer header p {
+    font-size: 16px;
+  }
 
-    .palomas {
-        justify-content: start;
-        gap: 40px;
-        width: 680px;
-    }
+  .palomas {
+    justify-content: start;
+    gap: 40px;
+    width: 680px;
+  }
 
-    .paloma {
-        align-items: center;
-        width: 320px;
-    }
+  .paloma {
+    align-items: center;
+    width: 320px;
+  }
 }
