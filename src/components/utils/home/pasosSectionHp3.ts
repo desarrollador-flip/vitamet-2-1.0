@@ -1,4 +1,5 @@
 import icono1 from '../../../assets/images/home/flecha-derecha.svg';
+import img from '../../../assets/images/home/sectionHp3/home-section-3-1.png';
 
 export const pasosSectionHp3 = [
   {
@@ -17,6 +18,7 @@ export const pasosSectionHp3 = [
     numero: '02',
     titulo: 'CUMPLIR SUEÑOS',
     texto: 'Ayudar a las personas a cumplir sus sueños, sin descuidar las áreas fundamentales de la vida.',
+    img: img,
   },
   {
     id: 3,
