@@ -30,7 +30,7 @@ export const Navbar = () => {
 
                 {!isMobile && (
                     <div className="container-boton-nav">
-                        <BotonNav to="/unete" className="boton-nav" dataCta="navbar-unete-btn">
+                        <BotonNav to="/contacto" className="boton-nav" dataCta="navbar-unete-btn">
                             Únete
                         </BotonNav>
                     </div>

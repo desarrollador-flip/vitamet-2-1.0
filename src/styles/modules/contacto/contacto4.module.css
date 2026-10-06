@@ -1,0 +1,7 @@
+.section { padding: 32px 24px; background: #eaf4fc; }
+.panel { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 44px; width: min(100%, 1232px); min-height: 280px; margin: auto; padding: 46px 7%; border-radius: 14px; background: #d1e4ff; text-align: center; }
+.panel h2 { margin-bottom: 12px; color: var(--blue-color); font-size: clamp(28px, 3.5vw, 32px); }
+.panel > div > p { color: #174e7b; line-height: 1.55; }
+.formArea { display: flex; flex-direction: column; gap: 16px; }
+.formArea > a { color: var(--blue-color); font-size: 14px; }
+@media (max-width: 767px) { .section { padding: 24px 20px; } .panel { grid-template-columns: 1fr; gap: 24px; padding: 36px 22px; } }

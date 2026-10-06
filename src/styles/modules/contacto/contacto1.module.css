@@ -1,0 +1,8 @@
+.hero { position: relative; display: flex; align-items: center; justify-content: center; min-height: 250px; height: min(31.25vw, 400px); max-height: 400px; overflow: hidden; background: #063e65; color: var(--white-color); text-align: center; }
+.image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+.hero::after { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(3,21,37,.48), rgba(3,21,37,.58)), linear-gradient(0deg, rgba(0,22,39,.28), transparent); content: ''; }
+.content { position: relative; z-index: 1; width: min(100% - 48px, 850px); margin: auto; padding: 42px 0; }
+.eyebrow { display: none; }
+.content h1 { margin-bottom: 18px; font-size: clamp(34px, 4vw, 48px); line-height: 1.1; }
+.content > p:last-child { max-width: 650px; margin: auto; color: #e5e8ed; font-size: 18px; line-height: 1.55; }
+@media (max-width: 575px) { .hero { min-height: 300px; height: auto; } .image { object-position: 50% center; } .content { width: calc(100% - 40px); padding: 54px 0; } .content h1 { font-size: 34px; } .content > p:last-child { font-size: 16px; } }

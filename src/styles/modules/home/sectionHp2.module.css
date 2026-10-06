@@ -9,9 +9,16 @@
   gap: 40px;
 }
 
+.content {
+  box-sizing: border-box;
+  width: min(100%, 680px);
+  border-left: 5px solid var(--blue-color);
+  padding-left: 12px;
+}
+
 .sectionContainer header {
   margin-bottom: 30px;
-  width: 335px;
+  width: 100%;
 }
 
 .sectionContainer header h2 {
@@ -25,7 +32,7 @@
   align-items: start;
   justify-content: center;
   gap: 20px;
-  width: 335px;
+  width: 100%;
 }
 
 .paloma {
@@ -33,7 +40,7 @@
   align-items: center;
   justify-content: start;
   gap: 20px;
-  width: 335px;
+  width: 100%;
 }
 
 .paloma div:nth-child(1) {
@@ -99,12 +106,16 @@
 }
 
 @media (min-width: 576px) {
+  .content {
+    padding-left: 18px;
+  }
+
   .sectionContainer {
     gap: 60px;
   }
 
   .sectionContainer header {
-    width: 550px;
+    width: 100%;
   }
 
   .sectionContainer header h2 {
@@ -113,12 +124,12 @@
 
   .palomas {
     gap: 30px 10px;
-    width: 550px;
+    width: 100%;
   }
 
   .paloma {
     align-items: start;
-    width: 270px;
+    width: calc(50% - 5px);
   }
 
   .imgs {
@@ -173,6 +184,10 @@
 }
 
 @media (min-width: 1200px) {
+  .content {
+    width: 570px;
+    padding-left: 22px;
+  }
   .sectionContainer {
     flex-direction: row;
     align-items: start;
@@ -186,11 +201,11 @@
   }
 
   .palomas {
-    width: 570px;
+    width: 100%;
   }
 
   .paloma {
-    width: 280px;
+    width: calc(50% - 5px);
   }
 
   .imgs {
@@ -199,12 +214,16 @@
 }
 
 @media (min-width: 1400px) {
+  .content {
+    width: 680px;
+    padding-left: 26px;
+  }
   .sectionContainer {
     gap: 90px;
   }
 
   .sectionContainer header {
-    width: 680px;
+    width: 100%;
   }
 
   .sectionContainer header h2 {
@@ -223,6 +242,6 @@
 
   .paloma {
     align-items: center;
-    width: 320px;
+    width: calc(50% - 20px);
   }
 }

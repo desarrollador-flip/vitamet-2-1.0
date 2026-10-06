@@ -20,7 +20,7 @@ export const SectionHp1 = () => {
 
           <p>Vive con libertad, construye tu futuro y cambia tu vida. Somos los socios comerciales más importantes de MetLife México.</p>
 
-          <BotonNav to="/unete" className="boton-1" dataCta="home-unete-btn-1">
+          <BotonNav to="/contacto" className="boton-1" dataCta="home-unete-btn-1">
             APLICAR AHORA <img src={imgFlecha} alt="Flecha en dirección hacia la derecha" />
           </BotonNav>
         </div>

@@ -31,7 +31,7 @@ export const BurgerMenu = () => {
                 </ul>
 
                 <div className="bottom-burger-container">
-                    <BotonNav to="/unete" className="boton-nav" dataCta="burger-unete-btn">
+                    <BotonNav to="/contacto" className="boton-nav" dataCta="burger-unete-btn">
                         Únete
                     </BotonNav>
                     <img className="logo-burger" src={logo} alt="Logotipo de Doctora Stefany Quintero Ortodoncia" loading="lazy" decoding="async" />

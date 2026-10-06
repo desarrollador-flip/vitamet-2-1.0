@@ -1,0 +1,18 @@
+.section { padding: 32px 24px; background: #0569a9; color: #fff; }
+.inner { display: grid; grid-template-columns: minmax(280px, .52fr) minmax(0, 1fr); align-items: stretch; gap: 32px; max-width: 1072px; min-height: 500px; margin: auto; }
+.details { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 18px; padding: 8px 0; color: var(--white-color); }
+.eyebrow { color: var(--green-color); font-size: 13px; font-weight: 700; letter-spacing: .12em; }
+.details h2 { font-size: clamp(28px, 3.5vw, 32px); }
+.details ul { display: flex; flex-direction: column; gap: 18px; margin: 0; padding: 0; list-style: none; }
+.details li, .phone { display: flex; flex-direction: column; gap: 5px; padding-left: 40px; }
+.details li strong, .phone strong { font-size: 15px; }
+.details li span { color: #b7ddf6; font-size: 14px; line-height: 1.4; }
+.details a { color: #e4f4ff; text-decoration: none; text-underline-offset: 4px; }
+.address { max-width: 300px; color: #b7ddf6; line-height: 1.55; }
+.phone span { color: #d6f355; }
+.map { position: relative; display: flex; align-items: center; justify-content: center; min-height: 440px; overflow: hidden; border-radius: 8px; background-color: #cadce3; background-image: linear-gradient(22deg, transparent 45%, #9fc7d5 46% 49%, transparent 50%), linear-gradient(98deg, transparent 45%, #f2f0d9 46% 52%, transparent 53%), linear-gradient(0deg, transparent 43%, rgba(117,172,194,.8) 44% 47%, transparent 48%), linear-gradient(90deg, transparent 54%, rgba(117,172,194,.8) 55% 58%, transparent 59%), repeating-linear-gradient(0deg, transparent 0 50px, rgba(110,156,178,.55) 51px 55px, transparent 56px 92px), repeating-linear-gradient(90deg, transparent 0 62px, rgba(110,156,178,.55) 63px 67px, transparent 68px 112px); color: #567c8b; }
+.map::before { position: absolute; inset: 0; background: rgba(219,236,240,.28); content: ''; }
+.map::after { position: absolute; top: 50%; left: 50%; width: 42px; height: 42px; border: 9px solid #fff; border-radius: 50% 50% 50% 0; background: #0069a9; box-shadow: 0 3px 12px rgba(0,0,0,.22); content: ''; transform: translate(-50%, -75%) rotate(-45deg); }
+.mapMarker { position: absolute; z-index: 1; top: calc(50% - 16px); left: calc(50% - 3px); color: white; font-size: 12px; }
+.map strong { position: relative; z-index: 1; margin-top: 100px; padding: 8px 14px; background: rgba(255,255,255,.72); font-size: 20px; }
+@media (max-width: 767px) { .section { padding: 36px 20px; } .inner { grid-template-columns: 1fr; gap: 26px; min-height: 0; } .details { padding: 0; } .map { min-height: 320px; } }

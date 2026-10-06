@@ -19,7 +19,7 @@ export const enlacesRapidos: NavItem[] = [
     },
     {
         id: 'bolsa',
-        to: '/bolsa-de-trabajo',
+        to: '/recluta',
         label: 'Bolsa de Trabajo',
         title: 'Conoce las oportunidades de trabajo en Vitamet',
         dataLink: 'footer-bolsa-link',

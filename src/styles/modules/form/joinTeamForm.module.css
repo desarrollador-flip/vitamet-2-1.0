@@ -1,0 +1,14 @@
+.form { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 24px; }
+.field { display: flex; min-width: 0; flex-direction: column; gap: 5px; }
+.field label { color: #707a89; font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+.field input, .field select { width: 100%; min-height: 40px; padding: 7px 0; border: 0; border-bottom: 1px solid #dce2e9; border-radius: 0; background: transparent; color: #252e38; font: inherit; font-size: 16px; }
+.field input[type='file'] { min-height: 156px; grid-column: 1 / -1; padding: 45px 12px 12px; border: 2px dashed #bcc9dc; border-radius: 6px; background: #fff; text-align: center; }
+.field:nth-child(3), .field:nth-child(4), .submit { grid-column: 1 / -1; }
+.field:nth-child(4) label { display: none; }
+.field small { color: var(--text-color); font-size: 13px; }
+.field input:focus-visible, .field select:focus-visible { outline: 3px solid #85c8e3; outline-offset: 2px; }
+.field [aria-invalid='true'] { border-color: #b42318; }
+.error { color: #b42318; font-size: 14px; }
+.submit { align-self: stretch; min-height: 50px; padding: 12px 24px; border: 0; border-radius: 4px; background: var(--green-color); color: #fff; font: inherit; font-weight: 700; cursor: pointer; }
+.submit:focus-visible { outline: 3px solid var(--skyblue-color); outline-offset: 3px; }
+@media (max-width: 575px) { .form { grid-template-columns: 1fr; } .field:nth-child(3), .field:nth-child(4), .submit { grid-column: auto; } .submit { width: 100%; } }

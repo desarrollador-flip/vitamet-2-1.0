@@ -1,0 +1,22 @@
+.section { max-width: 1280px; margin: auto; padding: 12px 6.25% 56px; }
+.heading { margin-bottom: 34px; text-align: center; }
+.eyebrow { margin-bottom: 10px; color: var(--blue-color); font-size: 13px; font-weight: 700; letter-spacing: .12em; }
+.heading h2 { font-size: clamp(30px, 4vw, 42px); }
+.grid { display: grid; grid-template-columns: repeat(12, 1fr); grid-template-rows: 240px 240px; gap: 24px; }
+.card { position: relative; display: flex; align-items: flex-start; gap: 18px; padding: 32px; border: 1px solid #dfe5e9; border-radius: 22px; background: #fff; }
+.reasonIcon { position: relative; z-index: 1; flex: 0 0 58px; width: 58px; height: 58px; object-fit: contain; }
+.card > div { position: relative; z-index: 1; }
+.teamPhoto { position: absolute; z-index: 0; top: 24px; right: 24px; bottom: 24px; width: 40%; height: calc(100% - 48px); border-radius: 14px; object-fit: cover; opacity: 1; }
+.card h3 { margin-bottom: 10px; color: var(--blue-color); font-size: 22px; }
+.card p { line-height: 1.5; }
+.growth { grid-column: span 8; grid-row: 1; padding: 38px; }
+.growth h3 { margin-top: 18px; }
+.wellbeing { grid-column: span 4; grid-row: 1; flex-direction: column; justify-content: space-between; background: var(--blue-color); color: var(--white-color); }
+.wellbeing h3 { color: #fff; }
+.wellbeing .reasonIcon { filter: brightness(0) invert(1); }
+.travel { grid-column: span 4; grid-row: 2; flex-direction: column; justify-content: center; background: #c1f267; color: #45650a; }
+.travel h3 { margin-top: 16px; color: #45650a; }
+.collaboration { grid-column: span 8; grid-row: 2; align-items: center; }
+.collaboration > div { max-width: 45%; }
+@media (max-width: 767px) { .section { padding: 12px 20px 48px; } .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: auto; gap: 14px; } .card { min-height: 200px; flex-direction: column; padding: 22px; } .growth, .wellbeing, .travel, .collaboration { grid-column: auto; grid-row: auto; } .growth { grid-column: span 2; } .collaboration { grid-column: span 2; min-height: 250px; } .teamPhoto { top: auto; width: 42%; height: 76%; } .collaboration > div { max-width: 50%; } }
+@media (max-width: 479px) { .grid { grid-template-columns: 1fr; } .growth, .collaboration { grid-column: auto; } .card { min-height: 0; } .collaboration { min-height: 280px; } .teamPhoto { width: 42%; height: 70%; } .collaboration > div { max-width: 48%; } }

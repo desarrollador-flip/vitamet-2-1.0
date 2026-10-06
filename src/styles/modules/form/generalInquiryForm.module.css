@@ -1,0 +1,11 @@
+.form { display: flex; flex-direction: column; gap: 16px; }
+.field { display: flex; flex-direction: column; gap: 5px; }
+.field label { color: #707a89; font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+.field input, .field select, .field textarea { width: 100%; min-height: 40px; padding: 7px 0; border: 0; border-bottom: 1px solid #dce2e9; border-radius: 0; background: transparent; color: #252e38; font: inherit; font-size: 16px; }
+.field textarea { min-height: 102px; resize: vertical; }
+.field input:focus-visible, .field select:focus-visible, .field textarea:focus-visible { outline: 3px solid #85c8e3; outline-offset: 2px; }
+.field [aria-invalid='true'] { border-bottom-color: #b42318; }
+.error { color: #b42318; font-size: 14px; }
+.submit { align-self: stretch; min-height: 50px; margin-top: 8px; padding: 12px 24px; border: 0; border-radius: 4px; background: var(--blue-color); color: var(--white-color); font: inherit; font-weight: 700; cursor: pointer; }
+.submit:focus-visible { outline: 3px solid var(--skyblue-color); outline-offset: 3px; }
+@media (max-width: 575px) { .submit { width: 100%; } }

@@ -13,7 +13,7 @@ export const SectionHp2 = () => {
 
   return (
     <section className={styles.sectionContainer}>
-      <div>
+      <div className={styles.content}>
         <header>
           <h2>LA ASEGURADORA #1 DE MÉXICO YA CONFÍA EN NOSOTROS</h2>
 

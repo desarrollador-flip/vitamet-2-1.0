@@ -1,0 +1,16 @@
+.hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(340px, .95fr); align-items: center; gap: clamp(36px, 6vw, 76px); max-width: 1280px; min-height: 620px; margin: auto; padding: 62px 6.25%; background: radial-gradient(ellipse at 88% 50%, #e8f3fc 0 25%, transparent 25.2%); }
+.content { min-width: 0; }
+.eyebrow { display: inline-block; margin-bottom: 26px; padding: 6px 16px; border-radius: 16px; background: #c2f06a; color: #4e6d05; font-size: 13px; font-weight: 500; letter-spacing: .02em; }
+.content h1 { max-width: 520px; margin-bottom: 24px; color: var(--blue-color); font-size: clamp(40px, 4vw, 48px); line-height: 1.25; }
+.content > p:not(.eyebrow) { max-width: 540px; color: var(--text-color); font-size: 18px; line-height: 1.6; }
+.actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-top: 32px; }
+.secondary { display: inline-flex; min-height: 48px; align-items: center; padding: 0 24px; border: 1px solid var(--blue-color); border-radius: 12px; color: var(--blue-color); font-weight: 500; text-decoration: none; }
+.photo { position: relative; justify-self: center; width: min(100%, 544px); padding: 0 0 10px; }
+.photo::before { position: absolute; z-index: -1; top: -72px; right: -50px; bottom: -70px; left: 34%; border-radius: 110px 110px 0 0; background: #e9f5ff; content: ''; }
+.photo img { display: block; width: 100%; height: 550px; border-radius: 24px; object-fit: cover; object-position: center 36%; box-shadow: 0 18px 30px rgba(0,32,60,.16); }
+.photo span { position: absolute; right: 4%; bottom: 28px; left: 4%; display: flex; min-height: 76px; flex-direction: column; justify-content: center; padding: 14px 20px 14px 70px; border: 1px solid rgba(255,255,255,.5); border-radius: 15px; background: rgba(255,255,255,.82); backdrop-filter: blur(9px); color: var(--blue-color); }
+.photo span::before { position: absolute; left: 28px; color: var(--green-color); content: '♙'; font-size: 24px; }
+.photo span strong { font-size: 14px; }
+.photo span small { color: #586472; font-size: 12px; }
+@media (max-width: 767px) { .hero { grid-template-columns: 1fr 1fr; min-height: 0; gap: 24px; padding: 56px 24px 64px; } .photo img { height: 440px; } .content h1 { font-size: 38px; } .actions { align-items: flex-start; flex-direction: column; } }
+@media (max-width: 575px) { .hero { grid-template-columns: 1fr; padding: 48px 20px 56px; background: radial-gradient(ellipse at 100% 76%, #e8f3fc 0 28%, transparent 28.2%); } .content h1 { max-width: 420px; font-size: 38px; } .content > p:not(.eyebrow) { font-size: 16px; } .actions { flex-direction: row; } .photo { width: min(86%, 360px); margin-top: 16px; } .photo img { height: auto; aspect-ratio: 0.75; } .photo::before { top: -25px; right: -22px; bottom: -28px; left: 30%; border-radius: 72px 72px 0 0; } }
