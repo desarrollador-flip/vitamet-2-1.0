@@ -1,17 +1,110 @@
-.section { position: relative; overflow: hidden; padding: 8px max(24px, calc((100vw - 1232px) / 2)) 48px; background: #eaf4fc; }
-.heading { margin: 0 auto 30px; max-width: 1232px; text-align: left; }
-.eyebrow { margin-bottom: 10px; color: var(--blue-color); font-size: 13px; font-weight: 700; letter-spacing: .12em; }
-.heading h2 { color: var(--black-color); font-size: clamp(30px, 4vw, 42px); }
-.timelineViewport { overflow: hidden; touch-action: pan-y; }
-.timelineTrack { display: flex; width: 100%; gap: 24px; transition: transform 700ms ease; }
-.milestone { position: relative; flex: 0 0 100%; min-width: 0; min-height: 180px; padding: 0 18px 8px 32px; border-top: 0; border-left: 2px solid #c9e2ff; text-align: left; }
-.dot { position: absolute; top: 0; left: -9px; width: 16px; height: 16px; border: 0; border-radius: 50%; background: var(--blue-color); box-shadow: none; }
-.milestone strong { display: block; margin-bottom: 10px; color: #8dbfff; font-size: 24px; }
-.milestone h3 { margin-bottom: 12px; font-size: 21px; line-height: 1.35; }
-.milestone p { color: var(--text-color); font-size: 15px; line-height: 1.5; }
-.controls { position: absolute; top: 14px; right: max(24px, calc((100vw - 1232px) / 2)); display: flex; gap: 10px; margin-top: 0; }
-.controls button { width: 48px; height: 48px; border: 1px solid #dbe5ec; border-radius: 12px; background: transparent; color: var(--black-color); font-size: 22px; cursor: pointer; }
-.controls button:focus-visible { outline: 3px solid var(--skyblue-color); outline-offset: 3px; }
-@media (min-width: 576px) { .milestone { flex-basis: calc((100% - 24px) / 2); } }
-@media (min-width: 992px) { .milestone { flex-basis: calc((100% - 72px) / 4); } }
-@media (prefers-reduced-motion: reduce) { .timelineTrack { transition-duration: .01ms; } }
+.section {
+  position: relative;
+  padding: 8px max(24px, calc((100vw - 1270px) / 2)) 48px;
+  background: #eaf4fc;
+  z-index: 3;
+}
+.heading {
+  margin: 0 auto 30px;
+  max-width: 1232px;
+  text-align: left;
+}
+.eyebrow {
+  margin-bottom: 10px;
+  color: var(--blue-color);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+.heading h2 {
+  color: var(--black-color);
+  font-size: clamp(30px, 4vw, 42px);
+}
+.timelineViewport {
+  overflow: hidden;
+  touch-action: pan-y;
+}
+.timelineTrack {
+  display: flex;
+  width: 100%;
+  gap: 24px;
+  transition: transform 700ms ease;
+}
+.milestone {
+  position: relative;
+  flex: 0 0 100%;
+  min-width: 0;
+  min-height: 180px;
+  padding: 0 18px 8px 32px;
+  border-top: 0;
+  border-left: 2px solid #c9e2ff;
+  text-align: left;
+}
+.dot {
+  position: absolute;
+  top: 0;
+  left: -9px;
+  width: 16px;
+  height: 16px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--blue-color);
+  box-shadow: none;
+}
+.milestone strong {
+  display: block;
+  margin-bottom: 10px;
+  color: #8dbfff;
+  font-size: 24px;
+}
+.milestone h3 {
+  margin-bottom: 12px;
+  font-size: 21px;
+  line-height: 1.35;
+}
+.milestone p {
+  color: var(--text-color);
+  font-size: 15px;
+  line-height: 1.5;
+}
+.controls {
+  position: absolute;
+  top: -15px;
+  right: max(24px, calc((100vw - 1232px) / 2));
+  display: flex;
+  gap: 10px;
+  margin-top: 0;
+}
+.controls button {
+  width: 48px;
+  height: 48px;
+  border: 1px solid #dbe5ec;
+  border-radius: 12px;
+  background: transparent;
+  color: var(--black-color);
+  font-size: 22px;
+  cursor: pointer;
+}
+.controls button:focus-visible {
+  outline: 3px solid var(--skyblue-color);
+  outline-offset: 3px;
+}
+@media (min-width: 576px) {
+  .milestone {
+    flex-basis: calc((100% - 24px) / 2);
+  }
+
+  .controls {
+    top: 15px;
+  }
+}
+@media (min-width: 992px) {
+  .milestone {
+    flex-basis: calc((100% - 72px) / 4);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .timelineTrack {
+    transition-duration: 0.01ms;
+  }
+}

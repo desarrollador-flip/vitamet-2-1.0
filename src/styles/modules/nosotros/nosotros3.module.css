@@ -1,15 +1,138 @@
-.section { display: grid; grid-template-columns: minmax(300px, .9fr) 1.1fr; align-items: center; gap: clamp(42px, 6vw, 76px); width: 100%; margin: auto; padding: 52px max(24px, calc((100vw - 1080px) / 2)) 68px; background: #eaf4fc; }
-.photoWrap { position: relative; z-index: 0; min-width: 0; }
-.photoWrap img { display: block; width: 100%; max-height: 560px; border-radius: 8px; object-fit: cover; }
-.photoFrame { position: absolute; z-index: -1; inset: 0; border: 11px solid #fff; border-radius: 12px; }
-.photoWrap img { width: calc(100% - 22px); margin: 11px; border-radius: 4px; }
-.photoBadge { position: absolute; right: -18px; bottom: -12px; max-width: 240px; padding: 20px 24px; border-radius: 4px; background: var(--green-color); color: #233500; font-weight: 500; font-style: italic; line-height: 1.5; }
-.copy { display: flex; flex-direction: column; gap: 24px; }
-.copy article { padding-left: 0; border-left: 0; }
-.eyebrow { margin-bottom: 8px; color: var(--blue-color); font-size: 13px; font-weight: 700; letter-spacing: .12em; }
-.copy h2 { margin-bottom: 8px; color: var(--blue-color); font-size: clamp(23px, 3vw, 30px); }
-.copy article > p:last-child { color: var(--text-color); line-height: 1.6; }
-.values { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 0; padding: 0; list-style: none; color: var(--blue-color); font-size: 14px; font-weight: 700; }
-.values li { display: flex; flex-direction: column; gap: 8px; }
-.values li span { color: #6c7784; font-size: 13px; font-weight: 400; }
-@media (max-width: 767px) { .section { grid-template-columns: 1fr; padding: 64px 24px; gap: 48px; } .photoWrap { margin-right: 12px; } .photoFrame { inset: 14px -12px -14px 14px; } .photoBadge { right: -12px; bottom: 18px; } }
+.section {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: center;
+  gap: clamp(42px, 5vw, 64px);
+  width: 100%;
+  margin: auto;
+  padding: 20px max(24px, calc((100vw - 1080px) / 2)) 90px;
+  background: #eaf4fc;
+}
+
+.photoWrap {
+  position: relative;
+  z-index: 0;
+  min-width: 0;
+  padding: 12px;
+}
+.photoFrame {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 12px 18px rgba(0, 0, 0, 0.12);
+}
+.photoWrap > img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.photoBadge {
+  position: absolute;
+  right: -24px;
+  bottom: -24px;
+  width: 240px;
+  padding: 32px;
+  border-radius: 4px;
+  background: var(--green-color);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.12);
+  color: #233500;
+  font-size: 16px;
+  font-style: italic;
+  line-height: 1.5;
+}
+.copy {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 48px;
+}
+.copy h2 {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 20px;
+  color: var(--blue-color);
+  font-size: 30px;
+  line-height: 1.2;
+}
+.copy h2 img {
+  flex: 0 0 33px;
+  width: 33px;
+  height: 26px;
+  object-fit: contain;
+}
+.copy article > p {
+  color: var(--text-color);
+  font-size: 18px;
+  line-height: 1.55;
+}
+.values {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+  color: var(--blue-color);
+  font-size: 16px;
+}
+.values li {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.values li span {
+  color: #6c7784;
+  font-size: 14px;
+}
+
+@media (max-width: 991px) {
+  .section {
+    grid-template-columns: 1fr;
+    padding-top: 12px;
+    padding-bottom: 56px;
+    gap: 64px;
+  }
+  .photoWrap {
+    width: min(100% - 24px, 480px);
+    margin: 0 auto;
+  }
+  .photoBadge {
+    right: -12px;
+  }
+  .copy {
+    gap: 32px;
+  }
+  .copy article > p {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 575px) {
+  .photoWrap {
+    width: calc(100% - 12px);
+    margin-left: 0;
+    padding: 10px;
+  }
+  .photoBadge {
+    right: -12px;
+    bottom: -24px;
+    width: min(220px, 80%);
+    padding: 22px;
+    font-size: 14px;
+  }
+  .copy h2 {
+    gap: 14px;
+    font-size: 26px;
+  }
+  .values {
+    gap: 16px;
+    font-size: 14px;
+  }
+  .values li span {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+}

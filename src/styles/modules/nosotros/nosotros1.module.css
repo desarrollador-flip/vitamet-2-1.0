@@ -1,42 +1,149 @@
 .hero {
   position: relative;
-  display: grid;
-  min-height: max(280px, min(600px, 46.875vw, calc(100svh - 76px)));
+  isolation: isolate;
+  display: flex;
   align-items: center;
+  justify-content: center;
   overflow: hidden;
-  background: #063b61;
+  min-height: calc(100svh - 66px);
+  background: linear-gradient(to right, var(--blue-color), var(--skyblue-color));
   color: var(--white-color);
 }
 
-.heroImage {
-  position: absolute;
-  inset: 0 auto 0 50%;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 48%;
-  transform: translateX(-50%);
-  opacity: .47;
-}
-
 .content {
-  position: relative;
-  z-index: 1;
-  width: min(100% - 48px, 1232px);
-  margin: auto;
-  padding: 70px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 20px;
+  width: min(375px, 100%);
+  padding: 32px 20px;
 }
 
-.eyebrow { display: inline-block; margin-bottom: 18px; padding: 5px 12px; border-radius: 2px; background: var(--green-color); color: #182500; font-size: 12px; font-weight: 700; letter-spacing: .02em; }
-.content h1 { max-width: 760px; margin-bottom: 20px; font-size: clamp(36px, 4.3vw, 48px); line-height: 1.15; }
-.content > p:not(.eyebrow) { max-width: 670px; color: #d5e4ee; font-size: 18px; line-height: 1.55; }
-.actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; margin-top: 30px; }
-.secondary { display: inline-flex; min-height: 46px; align-items: center; padding: 0 24px; border: 1px solid #fff; border-radius: 2px; color: #fff; text-decoration: none; }
+.eyebrow {
+  padding: 5px 10px;
+  background: var(--green-color);
+  box-shadow: -6px 4px 10px rgba(0, 0, 0, 0.2);
+  color: var(--black-color);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.content h1 {
+  font-size: 28px;
+  line-height: 1.2;
+}
+.content > p:not(.eyebrow) {
+  font-size: 16px;
+  line-height: 1.55;
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 12px;
+}
+.primary,
+.secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  padding: 12px 30px;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  font-size: 14px;
+  line-height: 1.4;
+  text-align: center;
+  text-decoration: none;
+}
+.primary {
+  background: var(--green-color);
+  color: var(--black-color);
+  font-weight: 700;
+}
+.secondary {
+  border-color: var(--white-color);
+  background: transparent;
+  color: var(--white-color);
+}
+.primary:focus-visible,
+.secondary:focus-visible {
+  outline: 3px solid var(--white-color);
+  outline-offset: 4px;
+}
 
 @media (max-width: 575px) {
-  .hero { min-height: 450px; }
-  .heroImage { opacity: .35; }
-  .content { width: calc(100% - 40px); padding: 56px 0; }
-  .content h1 { font-size: 36px; }
-  .content > p:not(.eyebrow) { font-size: 16px; }
+  .heroInner {
+    width: 100%;
+  }
+  .content {
+    margin: auto;
+  }
+  .actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  .actions a {
+    width: 100%;
+  }
+}
+
+@media (min-width: 576px) {
+  .hero {
+    min-height: 0;
+    max-height: calc(100svh - 66px);
+    background: linear-gradient(to right, #063b61, #102c43);
+  }
+  .heroInner {
+    flex: 0 0 auto;
+  }
+  .heroImage {
+    position: relative;
+    z-index: -1;
+    display: block;
+    width: auto;
+    height: auto;
+    max-width: none;
+    opacity: 0.32;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+  }
+  .content {
+    position: absolute;
+    inset: 0;
+    width: 550px;
+    margin: auto;
+    padding: 0;
+  }
+  .content h1 {
+    font-size: 34px;
+  }
+}
+
+@media (min-width: 992px) {
+  .hero {
+    max-height: calc(100svh - 76px);
+  }
+}
+
+@media (min-width: 1200px) {
+  .content {
+    width: 1100px;
+  }
+  .content h1 {
+    width: 740px;
+    font-size: 44px;
+  }
+  .content > p:not(.eyebrow) {
+    width: 670px;
+    font-size: 18px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .content {
+    width: 1270px;
+  }
 }
