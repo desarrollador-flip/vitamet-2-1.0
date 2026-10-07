@@ -1,3 +1,38 @@
-.hero { position: relative; width: 100%; aspect-ratio: 1282 / 641; max-height: 641px; overflow: hidden; background: #f4f3f1; }
-.image { display: block; width: min(100%, 1282px); height: 100%; margin: auto; object-fit: cover; object-position: center; }
-@media (max-width: 575px) { .hero { min-height: 0; aspect-ratio: 1.6; } .image { object-fit: cover; } }
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #f4f3f1;
+}
+
+.image {
+  display: block;
+  flex-shrink: 0;
+  width: 100%;
+  height: auto;
+}
+
+@media (min-width: 576px) {
+  .hero {
+    max-height: calc(100svh - 66px);
+  }
+  .image {
+    width: auto;
+    max-width: none;
+  }
+}
+
+@media (min-width: 992px) {
+  .hero {
+    max-height: calc(100svh - 76px);
+  }
+}
+
+@media (min-width: 1200px) {
+  .image {
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+  }
+}

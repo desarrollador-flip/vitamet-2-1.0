@@ -2,5 +2,15 @@ import { EmailCaptureForm } from '../../form/EmailCaptureForm';
 import styles from '../../../styles/modules/blog/blog4.module.css';
 
 export function Blog4() {
-  return <section className={styles.section}><div><p className={styles.eyebrow}>NEWSLETTER</p><h2>Ideas para cuidar tu futuro</h2><p>Recibe información y consejos de bienestar directamente en tu correo.</p></div><EmailCaptureForm id="newsletter-email" label="Correo electrónico" buttonText="Suscribirme" variant="dark" /></section>;
+  return (
+    <section className={styles.section}>
+      <div>
+        <p className={styles.eyebrow}>NEWSLETTER</p>
+        <h2>Suscríbete a nuestra Newsletter</h2>
+        <p>Recibe semanalmente los mejores insights sobre finanzas personales, bienestar corporativo y protección familiar directo en tu bandeja de entrada.</p>
+      </div>
+      <EmailCaptureForm id="newsletter-email" label="Tu correo electrónico" buttonText="Suscribirse ahora" variant="dark" />
+      <p className={styles.legal}>Al suscribirte, aceptas nuestra Política de Privacidad y el uso de tus datos para fines informativos.</p>
+    </section>
+  );
 }

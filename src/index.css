@@ -24,6 +24,10 @@ html {
   background: linear-gradient(120deg, #f1f6f8, #eef4f2);
 }
 
+.blog {
+  background: #f4f3f1;
+}
+
 /* Hace que Chrome/Edge NO apliquen el fondo amarillo/blanco del autofill a los form */
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
