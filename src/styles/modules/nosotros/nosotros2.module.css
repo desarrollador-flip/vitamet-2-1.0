@@ -78,18 +78,20 @@
   background: #f7fafc;
 }
 .partners article:first-child {
+  isolation: isolate;
   overflow: hidden;
   background: var(--blue-color);
   color: var(--white-color);
 }
 .partners article:first-child::after {
   position: absolute;
-  right: -14px;
-  bottom: -36px;
-  width: 120px;
-  height: 120px;
-  border: 12px solid rgba(255, 255, 255, 0.12);
-  border-radius: 50%;
+  z-index: -1;
+  right: 0;
+  bottom: 0;
+  width: 102px;
+  height: 102px;
+  background: url('../../../assets/images/nosotros/planeta.svg') center / contain no-repeat;
+  opacity: 0.12;
   content: '';
   pointer-events: none;
 }

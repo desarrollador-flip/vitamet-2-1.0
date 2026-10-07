@@ -1,29 +1,25 @@
 .section {
-  position: relative;
+  padding: 40px max(24px, calc((100vw - 1270px) / 2)) 80px;
+  background: #eaf4fc;
+}
+
+.panel {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 48px;
-  margin: 40px max(24px, calc((100vw - 1270px) / 2)) 80px;
   padding: 112px 80px 80px;
   overflow: hidden;
   border-radius: 16px;
   background: var(--blue-color);
+  background-image: linear-gradient(var(--blue-color), var(--blue-color)), radial-gradient(rgba(0, 49, 88, 0.1925) 1px, transparent 1px);
+  background-size: 100% 32px, 9px 9px;
+  background-position: top left, 0 32px;
+  background-repeat: no-repeat, repeat;
   color: var(--white-color);
 }
 
-.section::before {
-  position: absolute;
-  inset: 32px 0 0;
-  background-image: radial-gradient(rgba(0, 49, 88, 0.35) 1px, transparent 1px);
-  background-size: 9px 9px;
-  content: '';
-  opacity: 0.55;
-}
-.section > * {
-  position: relative;
-}
-.section > div:first-child {
+.panel > div:first-child {
   flex: 1;
   min-width: 0;
   max-width: 540px;
@@ -74,7 +70,7 @@
 }
 
 @media (max-width: 1199px) {
-  .section {
+  .panel {
     gap: 32px;
     padding: 72px 40px;
   }
@@ -87,7 +83,7 @@
 }
 
 @media (max-width: 767px) {
-  .section {
+  .panel {
     flex-direction: column;
     align-items: flex-start;
     padding: 52px 28px;
@@ -106,7 +102,7 @@
 }
 
 @media (max-width: 575px) {
-  .section {
+  .panel {
     padding: 44px 24px;
   }
   .section h2 {
