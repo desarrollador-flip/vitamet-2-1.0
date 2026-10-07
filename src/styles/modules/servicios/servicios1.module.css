@@ -1,9 +1,170 @@
-.hero { position: relative; display: flex; align-items: center; min-height: 300px; height: min(50vw, 634px); max-height: 634px; overflow: hidden; background: #eaf3f7; color: var(--black-color); }
-.image { position: absolute; top: 0; left: 50%; width: min(100%, 1268px); height: 100%; object-fit: cover; object-position: center; transform: translateX(-50%); mask-image: linear-gradient(90deg, #000 30%, rgba(0,0,0,.75) 58%, rgba(0,0,0,.15) 100%); }
-.content { position: relative; width: min(100% - 48px, 1232px); margin: auto; padding: 48px 0; }
-.eyebrow { display: inline-block; margin-bottom: 20px; padding: 5px 12px; border-radius: 18px; background: var(--green-color); color: #425f00; font-size: 12px; font-weight: 700; letter-spacing: .01em; }
-.content h1 { max-width: 590px; margin-bottom: 18px; color: var(--blue-color); font-size: clamp(36px, 4.5vw, 48px); line-height: 1.2; }
-.content > p:not(.eyebrow) { max-width: 520px; color: #414b57; font-size: 18px; line-height: 1.55; }
-.actions { display: flex; align-items: center; flex-wrap: wrap; gap: 22px; margin-top: 28px; }
-.secondary { color: var(--blue-color); font-weight: 700; text-decoration: underline; text-underline-offset: 4px; }
-@media (max-width: 575px) { .hero { min-height: 450px; height: auto; } .image { opacity: .55; object-position: 58% center; mask-image: linear-gradient(90deg, rgba(0,0,0,.9), rgba(0,0,0,.28)); } .content { width: calc(100% - 40px); padding: 60px 0; } .content h1 { font-size: 37px; } .content > p:not(.eyebrow) { font-size: 16px; } }
+.hero {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100svh - 66px);
+  overflow: hidden;
+  background: #eaf3f7;
+  color: var(--text-color);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 20px;
+  width: min(375px, 100%);
+  padding: 20px;
+}
+
+.eyebrow {
+  padding: 5px 10px;
+  border-radius: 20px;
+  background: var(--green-color);
+  color: #425f00;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.content h1 {
+  color: var(--blue-color);
+  font-size: 28px;
+  line-height: 1.2;
+}
+
+.content > p:not(.eyebrow) {
+  color: #414b57;
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.primary,
+.secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 56px;
+  padding: 16px 30px;
+  border: 2px solid var(--blue-color);
+  border-radius: 7px;
+  font-size: 16px;
+  line-height: 1.4;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+}
+
+.primary {
+  background: var(--blue-color);
+  color: var(--white-color);
+}
+
+.primary img {
+  flex-shrink: 0;
+  filter: brightness(0) invert(1);
+}
+
+.secondary {
+  background: transparent;
+  color: var(--blue-color);
+}
+
+.primary:focus-visible,
+.secondary:focus-visible {
+  outline: 3px solid var(--blue-color);
+  outline-offset: 4px;
+}
+
+@media (max-width: 575px) {
+  .heroInner {
+    width: 100%;
+  }
+  .content {
+    margin: auto;
+  }
+  .actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  .actions a {
+    width: 100%;
+  }
+}
+
+@media (min-width: 576px) {
+  .hero {
+    min-height: 0;
+    max-height: calc(100svh - 66px);
+    background: linear-gradient(120deg, #f1f6f8, #eef4f2);
+  }
+
+  .heroInner {
+    flex: 0 0 auto;
+  }
+
+  .image {
+    position: relative;
+    z-index: -1;
+    display: block;
+    width: auto;
+    height: auto;
+    max-width: none;
+    opacity: 0.7;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 15%, black 45%, transparent 100%);
+  }
+
+  .content {
+    position: absolute;
+    inset: 0;
+    width: 550px;
+    margin: auto;
+    padding: 0;
+  }
+
+  .content h1 {
+    font-size: 34px;
+  }
+}
+
+@media (min-width: 992px) {
+  .hero {
+    max-height: calc(100svh - 76px);
+  }
+}
+
+@media (min-width: 1200px) {
+  .content {
+    width: 1100px;
+  }
+  .content h1 {
+    width: 600px;
+    font-size: 38px;
+  }
+  .content > p:not(.eyebrow) {
+    width: 500px;
+    font-size: 18px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .content {
+    width: 1270px;
+  }
+  .content h1 {
+    width: 700px;
+    font-size: 44px;
+  }
+}

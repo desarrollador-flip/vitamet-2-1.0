@@ -4,5 +4,12 @@ import { Servicios3 } from '../exports/servicios/Servicios3';
 import { Servicios4 } from '../exports/servicios/Servicios4';
 
 export function ServiciosPage() {
-  return <main><Servicios1 /><Servicios2 /><Servicios3 /><Servicios4 /></main>;
+  return (
+    <main className="servicios">
+      <Servicios1 />
+      <Servicios2 />
+      <Servicios3 />
+      <Servicios4 />
+    </main>
+  );
 }

@@ -7,11 +7,11 @@ import anciano from '../../../assets/images/servicios/anciano.svg';
 import empresa from '../../../assets/images/servicios/empresa.svg';
 
 const solutions = [
-  { title: 'Seguro de Gastos Médicos Mayores', image: escudo, text: 'Atención y respaldo para cuidar de tu salud y la de quienes más quieres.' },
-  { title: 'Seguro de Ahorro', image: cerdito, text: 'Construye un patrimonio con objetivos claros y acompañamiento experto.' },
-  { title: 'Seguro de Retiro', image: anciano, text: 'Planea una etapa de retiro con mayor tranquilidad financiera.' },
-  { title: 'Seguro de Educación', image: graduado, text: 'Prepara hoy los recursos para las metas educativas de tu familia.' },
-  { title: 'Seguro de Empresas', image: empresa, text: 'Protección para fortalecer el bienestar de tu organización.' },
+  { title: 'Seguro de Gastos Médicos Mayores', image: escudo, text: 'Te brindamos la tranquilidad de estar protegido ante cualquier imprevisto de salud con la mejor cobertura.' },
+  { title: 'Seguro de Ahorro', image: cerdito, text: 'Cumple tus metas financieras con planes estructurados que combinan protección de vida y crecimiento patrimonial garantizado.' },
+  { title: 'Seguro de Retiro', image: anciano, text: 'Asegura un futuro digno y sin preocupaciones. Planes de pensiones complementarios diseñados según tu estilo de vida ideal.' },
+  { title: 'Seguro de Educación', image: graduado, text: 'El legado más importante es la educación. Garantiza el financiamiento universitario de tus hijos sin importar las circunstancias.' },
+  { title: 'Seguro de Empresas', image: empresa, text: 'Protegemos el capital humano y los activos de tu negocio con soluciones corporativas flexibles y competitivas.' },
 ];
 
 export function Servicios2() {
