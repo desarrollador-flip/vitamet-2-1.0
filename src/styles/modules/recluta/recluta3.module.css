@@ -1,21 +1,120 @@
-.section { overflow: hidden; padding: 48px max(24px, calc((100vw - 1200px) / 2)) 68px; background: #f7f9fa; }
-.heading { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin: 0 auto 36px; text-align: left; }
-.eyebrow { margin-bottom: 10px; color: var(--blue-color); font-size: 13px; font-weight: 700; letter-spacing: .12em; }
-.heading h2 { font-size: clamp(30px, 4vw, 42px); }
-.viewport { overflow: hidden; touch-action: pan-y; }
-.track { display: flex; width: 100%; gap: 24px; transition: transform 700ms ease; }
-.card { display: flex; flex: 0 0 100%; min-width: 0; flex-direction: column; padding: 24px; border-radius: 12px; background: #fff; box-shadow: 0 10px 30px rgba(0,50,83,.08); }
-.person { display: flex; align-items: center; gap: 14px; order: 3; margin-top: auto; padding-top: 22px; }
-.person img { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; }
-.person strong, .person small { display: block; }
-.person strong { color: var(--blue-color); }
-.person small { margin-top: 4px; color: var(--text-color); font-size: 13px; }
-.stars { margin: 0 0 12px; color: var(--green-color); letter-spacing: 3px; font-size: 21px; }
-.card blockquote { color: var(--text-color); font-style: italic; line-height: 1.65; }
-.controls { display: flex; flex: 0 0 auto; gap: 10px; }
-.controls button { width: 48px; height: 48px; border: 1px solid #dce5eb; border-radius: 12px; background: transparent; color: var(--black-color); font-size: 22px; cursor: pointer; }
-.controls button:focus-visible { outline: 3px solid var(--skyblue-color); outline-offset: 3px; }
-@media (min-width: 576px) { .card { flex-basis: calc((100% - 24px) / 2); } }
-@media (min-width: 992px) { .card { flex-basis: calc((100% - 48px) / 3); } }
-@media (max-width: 575px) { .heading { align-items: flex-start; flex-direction: column; } }
-@media (prefers-reduced-motion: reduce) { .track { transition-duration: .01ms; } }
+.section {
+  overflow: hidden;
+  padding: 48px max(24px, calc((100vw - 1200px) / 2)) 68px;
+  background: #f7f9fa;
+}
+.heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin: 0 auto 36px;
+  text-align: left;
+}
+.eyebrow {
+  margin-bottom: 10px;
+  color: var(--blue-color);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+.heading h2 {
+  font-size: clamp(30px, 4vw, 42px);
+}
+.viewport {
+  overflow: hidden;
+  touch-action: pan-y;
+}
+.track {
+  display: flex;
+  width: 100%;
+  gap: 24px;
+  transition: transform 700ms ease;
+}
+.card {
+  display: flex;
+  flex: 0 0 100%;
+  min-width: 0;
+  flex-direction: column;
+  padding: 24px;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 10px 30px rgba(0, 50, 83, 0.08);
+}
+.person {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  order: 3;
+  margin-top: auto;
+  padding-top: 22px;
+}
+.person img {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.person strong,
+.person small {
+  display: block;
+}
+.person strong {
+  color: var(--blue-color);
+}
+.person small {
+  margin-top: 4px;
+  color: var(--text-color);
+  font-size: 13px;
+}
+.stars {
+  margin: 0 0 12px;
+  color: var(--green-color);
+  letter-spacing: 3px;
+  font-size: 21px;
+}
+.card blockquote {
+  color: var(--text-color);
+  font-style: italic;
+  line-height: 1.65;
+}
+.controls {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 10px;
+}
+.controls button {
+  width: 48px;
+  height: 48px;
+  border: 1px solid #dce5eb;
+  border-radius: 12px;
+  background: transparent;
+  color: var(--black-color);
+  font-size: 22px;
+  cursor: pointer;
+}
+.controls button:focus-visible {
+  outline: 3px solid var(--skyblue-color);
+  outline-offset: 3px;
+}
+@media (min-width: 576px) {
+  .card {
+    flex-basis: calc((100% - 24px) / 2);
+  }
+}
+@media (min-width: 992px) {
+  .card {
+    flex-basis: calc((100% - 48px) / 3);
+  }
+}
+@media (max-width: 575px) {
+  .heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    transition-duration: 0.01ms;
+  }
+}

@@ -28,6 +28,10 @@ html {
   background: #f4f3f1;
 }
 
+.recluta {
+  background: #f7f9fa;
+}
+
 /* Hace que Chrome/Edge NO apliquen el fondo amarillo/blanco del autofill a los form */
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
