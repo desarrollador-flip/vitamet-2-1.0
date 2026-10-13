@@ -6,8 +6,9 @@ import { Footer } from './components/common/Footer';
 import { HomePage } from './components/pages/HomePage';
 import { NosotrosPage } from './components/pages/NosotrosPage';
 import { ContactoPage } from './components/pages/ContactoPage';
+import { ServiciosPage } from './components/pages/ServiciosPage';
 
-/*import { ServiciosPage } from './components/pages/ServiciosPage';
+/*
 import { ReclutaPage } from './components/pages/ReclutaPage';
 import { BlogPage } from './components/pages/BlogPage';
  */
@@ -35,9 +36,10 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/nosotros" element={<NosotrosPage />} />
           <Route path="/contacto" element={<ContactoPage />} />
+          <Route path="/servicios" element={<ServiciosPage />} />
 
           {/* <Route path="/politica-privacidad" element={<HomePage />} />
-                    <Route path="/servicios" element={<ServiciosPage />} />
+                    
                     <Route path="/recluta" element={<ReclutaPage />} />
                     
                     <Route path="/blog" element={<BlogPage />} />
