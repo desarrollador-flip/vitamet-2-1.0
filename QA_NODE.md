@@ -2,14 +2,15 @@
 
 Fecha: 27 de octubre de 2026. Referencia: `qa_node_20261027_a43071`.
 
-**Estado: PENDIENTE de autorización para escrituras reales.** No se han creado
+**Estado: escrituras autorizadas; PENDIENTE comprobar la seguridad de las
+automatizaciones antes de ejecutarlas.** No se han creado
 registros ni adjuntos reales. No se han borrado registros ni cambiado tablas,
 automatizaciones, PHP, Neubox, GET de agentes, analytics o SEO.
 
 ## Preparación
 
 - Leídos AGENTS.md y contratos frontend/Node.
-- Cambios locales previos conservados. Ningún archivo existente cambió durante QA.
+- Cambios locales previos conservados. Ningún archivo de aplicación cambió durante QA.
 - Frontend: **64/64 pruebas aprobadas** mediante `npm test`.
 - Backend Node: **290/290 pruebas aprobadas**, con Axios simulado.
 - Lint: aprobado. Build completo TypeScript/Vite: aprobado.
@@ -18,7 +19,8 @@ automatizaciones, PHP, Neubox, GET de agentes, analytics o SEO.
   Las tres bases POST coinciden y las tablas son distintas. No se muestran valores.
 - Express activo en puerto 5000; Vite en `http://127.0.0.1:5173`.
 - Express lleva un preload temporal fuera del repositorio que bloquea tráfico
-  externo. Sigue activo hasta que se autoricen y preparen las pruebas reales.
+  externo. Se conserva el bloqueo mientras no se verifique la condición previa
+  sobre automatizaciones de la autorización.
 - Chrome headless con perfil temporal, sin perfil personal, recursos externos
   bloqueados. No se cargan servicios externos de analytics durante el QA.
 
@@ -61,9 +63,9 @@ Captura de CV parcial: `/tmp/vitamet-node-qa/cv-partial-desktop.png`.
 - Ningún registro ni archivo ha sido confirmado como creado. No se declara
   aprobado el recorrido completo hasta verificar los cuatro envíos y el adjunto.
 
-## Envíos preparados para autorización
+## Envíos autorizados y preparados
 
-Se proponen **cuatro registros**: dos en newsletter, uno en consulta y uno en Lead.
+Están autorizados **cuatro registros**: dos en newsletter, uno en consulta y uno en Lead.
 Como el adjunto requiere otra llamada, serán **cinco POST como máximo**:
 cuatro creaciones y una subida de PDF. Sin carga, sin reintentos automáticos.
 
@@ -86,7 +88,7 @@ para comprobar normalización. Los valores esperados en Airtable son los de la
 tabla anterior. `website` estará vacío. Se utilizará la campaña indicada en cada
 URL y se enviarán únicamente los campos del contrato.
 
-Después de autorizar: envíos individuales desde React por Vite/Express; lectura
+Después de verificar la condición sobre automatizaciones: envíos individuales desde React por Vite/Express; lectura
 filtrada del destino configurado y de la tabla por nombre para comprobar identidad,
 campos, source, campaña y normalización. Para CV, comprobar metadatos del adjunto
 y, si la descarga está disponible, tamaño y SHA-256 del PDF original.
@@ -98,10 +100,45 @@ revisarse manualmente y mantener el estado pendiente.
 
 ## Cambios y pendientes
 
-Único archivo creado en el repositorio: este informe. Scripts, fixtures y perfil
+Único archivo creado en el repositorio durante la preparación y actualizado en
+esta fase: este informe. Scripts, fixtures y perfil
 de QA son temporales, fuera del código de la aplicación. No hay correcciones de
-código propuestas por la fase sin escritura; el único límite detectado es el
-403 de metadata, que no impidió leer registros ni tablas por nombre.
+código propuestas por la fase sin escritura. El 403 de metadata no impidió leer
+registros ni tablas por nombre; tampoco permite concluir nada sobre las
+automatizaciones, cuya configuración no se obtuvo.
 
-Pendiente: autorización de los cuatro registros/cinco POST, ejecución y comprobación
-real de datos y adjunto. PHP y Neubox quedan fuera de esta etapa.
+### Autorización recibida y condición previa
+
+El usuario autorizó los datos exactos anteriores, **máximo cinco POST a Airtable**,
+sin reintentos, eliminaciones ni cambios de código, tablas o automatizaciones.
+Exigió comprobar **antes de escribir** que no se desencadenen acciones externas
+indeseadas. Si hay 502/504, timeout, parcial o incertidumbre, se detienen los POST
+siguientes y se investiga sin reenviar.
+
+No se encontraron configuraciones de automatizaciones o filtros de exclusión QA
+en el repositorio, ni herramientas conectadas de Airtable que permitan inspeccionarlas.
+La [documentación oficial de MCP de Airtable](https://support.airtable.com/articles/9897799762-using-the-airtable-mcp-server)
+describe herramientas para inspeccionar automatizaciones, pero esa conexión no
+está disponible en esta sesión. Las lecturas de registros realizadas no sustituyen
+la revisión de automatizaciones e integraciones externas.
+
+Se solicitó confirmar, mediante revisión de la configuración existente de
+`newsletter`, `consulta` y `Lead`, incluida la actualización de `attachment`,
+si no existen acciones externas aplicables o qué filtro existente excluye
+las campañas `qa_node_`. Ni los correos ficticios ni el prefijo UTM demuestran
+por sí solos esa exclusión. No se solicitó ni efectuó cambiar automatizaciones.
+
+**Ejecución real en esta fase: 0 de 5 POST utilizados.** Ninguna escritura
+habilitada; ningún registro ni PDF creado o confirmado. No hubo errores reales
+502/504, timeout ni resultados parciales, porque los envíos no comenzaron.
+
+| Flujo | QA sin escritura | QA real React → Vite → Express → Airtable |
+| --- | --- | --- |
+| `newsletter_blog` | Aprobado | Pendiente de comprobar automatizaciones antes del envío. |
+| `asesoria_contacto` | Aprobado | Pendiente de comprobar automatizaciones antes del envío. |
+| `consulta_contacto` | Aprobado | Pendiente de comprobar automatizaciones antes del envío. |
+| `cv_contacto` | Aprobado | Pendiente de comprobar automatizaciones; registro y PDF sin confirmar. |
+
+La autorización de escritura sigue vigente para este plan. Pendiente: evidencia
+de seguridad de automatizaciones, ejecución individual y lectura de comprobación
+después de cada flujo. PHP y Neubox quedan fuera de esta etapa.
