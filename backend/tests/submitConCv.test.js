@@ -4,6 +4,7 @@ const { deflateRawSync } = require('node:zlib');
 const { after, before, beforeEach, mock, test } = require('node:test');
 const axios = require('axios');
 const dotenv = require('dotenv');
+const { submitOnce } = require('../utils/submissionDeduplication');
 
 const testEnv = {
     AIRTABLE_API_KEY: 'test-only-key',
@@ -352,5 +353,151 @@ for (const kind of ['error', 'timeout', 'missing_id', 'empty_attachment', 'wrong
         assert.equal(postMock.mock.callCount(), kind === 'missing_id' ? 1 : 2); assert.equal(deleteMock.mock.callCount(), 0);
         const output = result.text + JSON.stringify(logMock.mock.calls.map((call) => call.arguments));
         for (const secret of ['private-marker', ...Object.values(testEnv), recordId, attachmentId, 'Authorization']) assert.ok(!output.includes(secret));
+    });
+}
+
+// La utilidad requiere evidencia interna explícita para liberar un fallo.
+// Los controladores actuales no la transmiten; los tests HTTP anteriores siguen
+// exigiendo retener sus 502/504, sin cambiar ningún contrato público.
+const confirmedSuccess = { status: 200, body: { success: true, message: 'Aceptado.' } };
+function unitFields() { return { name: `Dedup ${++sequence}` }; }
+function deferred() {
+    let resolve;
+    const promise = new Promise((done) => { resolve = done; });
+    return { promise, resolve };
+}
+
+test('dedup: agrupa fallos confirmados concurrentes y solo un nuevo llamado manual reintenta', async () => {
+    const fields = unitFields();
+    const started = deferred(); const pending = deferred();
+    const failure = { status: 502, recordCreated: false, body: { success: false, message: 'Rechazo confirmado antes de escribir.' } };
+    let calls = 0;
+    const operation = async () => { calls++; started.resolve(); return pending.promise; };
+    const first = submitOnce('con', fields, null, operation);
+    await started.promise;
+    const second = submitOnce('con', fields, null, operation);
+    const third = submitOnce('con', fields, null, operation);
+    assert.equal(calls, 1);
+    pending.resolve(failure);
+    assert.deepEqual(await Promise.all([first, second, third]), [failure, failure, failure]);
+    assert.equal(calls, 1); // Ningún reintento automático al terminar.
+    const retried = await submitOnce('con', fields, null, async () => { calls++; return confirmedSuccess; });
+    assert.deepEqual(retried, confirmedSuccess); assert.equal(calls, 2);
+    assert.deepEqual(await submitOnce('con', fields, null, operation), confirmedSuccess);
+    assert.equal(calls, 2);
+});
+
+for (const status of [400, 401, 403, 404, 413, 415, 422, 429, 500, 502, 503]) {
+    test(`dedup: permite otro intento tras ${status} con confirmación explícita de no creación`, async () => {
+        const fields = unitFields(); let calls = 0;
+        const failure = { status, recordCreated: false, body: { success: false, message: 'No se creó ningún registro.' } };
+        assert.deepEqual(await submitOnce('con', fields, null, async () => { calls++; return failure; }), failure);
+        assert.equal(calls, 1);
+        assert.deepEqual(await submitOnce('con', fields, null, async () => { calls++; return confirmedSuccess; }), confirmedSuccess);
+        assert.equal(calls, 2);
+    });
+}
+
+for (const result of [
+    { status: 400, body: { success: false } },
+    { status: 422, body: { success: false } },
+    { status: 429, body: { success: false } },
+    { status: 500, body: { success: false } },
+    { status: 502, body: { success: false } },
+    { status: 503, body: { success: false } },
+    { status: 504, body: { success: false } },
+    { status: 408, recordCreated: false, body: { success: false } },
+    { status: 504, recordCreated: false, body: { success: false } },
+    { status: 502, recordCreated: true, body: { success: false } },
+    { status: 502, recordCreated: 'false', body: { success: false } },
+    { status: 502, recordCreated: null, body: { success: false } },
+    { status: 502, recordCreated: 0, body: { success: false } },
+    { status: 502, body: { success: false, recordCreated: false } },
+    { status: '502', recordCreated: false, body: { success: false } },
+    { status: 502, recordCreated: false },
+    { status: 502, recordCreated: false, body: { success: 'false' } },
+    { status: 200, recordCreated: false, body: { success: true } },
+    { status: 200, recordCreated: false, body: { success: true, partial: true, code: 'CV_ATTACHMENT_FAILED' } },
+    { status: 502, recordCreated: false, body: { success: false, partial: true } },
+    { status: 502, recordCreated: false, body: { success: false, partial: 'unknown' } },
+    { status: 502, recordCreated: false, body: { success: false, code: 'CV_ATTACHMENT_FAILED' } },
+]) {
+    test(`dedup: conserva resultados inciertos, parciales o metadatos inconsistentes: ${JSON.stringify(result)}`, async () => {
+        const fields = unitFields(); let calls = 0;
+        const operation = async () => { calls++; return result; };
+        assert.deepEqual(await submitOnce('cv', fields, pdf, operation), result);
+        assert.deepEqual(await submitOnce('cv', fields, pdf, operation), result);
+        assert.equal(calls, 1);
+    });
+}
+
+test('dedup: una excepción desconocida conserva el fallo y no filtra datos ni adivina a partir de Axios', async () => {
+    const fields = unitFields(); let calls = 0;
+    const marker = 'private-dedup-marker';
+    const operation = async () => {
+        calls++;
+        throw Object.assign(new Error(marker), { recordCreated: false, response: { status: 422, data: marker } });
+    };
+    const result = await submitOnce('cv', fields, pdf, operation);
+    assert.equal(result.status, 500); assert.equal(result.body.success, false);
+    assert.deepEqual(await submitOnce('cv', fields, pdf, operation), result); assert.equal(calls, 1);
+    assert.ok(!JSON.stringify([result, logMock.mock.calls.map((call) => call.arguments)]).includes(marker));
+});
+
+for (const result of [
+    confirmedSuccess,
+    { status: 200, body: { success: true, partial: true, code: 'CV_ATTACHMENT_FAILED' } },
+    { status: 502, body: { success: false } },
+    { status: 504, body: { success: false } },
+]) {
+    test(`dedup: retención de 10 minutos desde el fin, sin renovarla al consultar: ${JSON.stringify(result)}`, async (t) => {
+        let now = Date.now();
+        t.mock.method(Date, 'now', () => now);
+        const fields = unitFields(); let calls = 0;
+        const operation = async () => { calls++; return result; };
+        await submitOnce('cv', fields, pdf, operation);
+        now += 9 * 60 * 1000;
+        assert.deepEqual(await submitOnce('cv', fields, pdf, operation), result); assert.equal(calls, 1);
+        now += 60 * 1000;
+        // La expiración por sí sola no ejecuta nada; requiere una nueva llamada.
+        assert.equal(calls, 1);
+        await submitOnce('cv', fields, pdf, operation); assert.equal(calls, 2);
+    });
+}
+
+test('dedup: una operación pendiente se agrupa aunque transcurran más de 10 minutos', async (t) => {
+    let now = Date.now(); t.mock.method(Date, 'now', () => now);
+    const fields = unitFields(); let calls = 0;
+    const started = deferred(); const pending = deferred();
+    const operation = async () => { calls++; started.resolve(); return pending.promise; };
+    const first = submitOnce('cv', fields, pdf, operation); await started.promise;
+    now += 11 * 60 * 1000;
+    const second = submitOnce('cv', fields, pdf, operation);
+    pending.resolve(confirmedSuccess);
+    assert.deepEqual(await Promise.all([first, second]), [confirmedSuccess, confirmedSuccess]); assert.equal(calls, 1);
+    now += 9 * 60 * 1000;
+    await submitOnce('cv', fields, pdf, operation); assert.equal(calls, 1);
+});
+
+test('dedup: mantiene independientes endpoints y bytes de archivos', async () => {
+    const fields = unitFields(); let calls = 0;
+    const operation = async () => { calls++; return confirmedSuccess; };
+    await submitOnce('con', fields, null, operation);
+    await submitOnce('cv', fields, pdf, operation);
+    await submitOnce('cv', fields, Buffer.concat([pdf, Buffer.from('different')]), operation);
+    assert.equal(calls, 3);
+});
+
+for (const endpoint of ['con', 'cv']) {
+    test(`${endpoint}: documenta limitación de 502 opaco, incluso si el proveedor se recupera`, async () => {
+        const fields = endpoint === 'con' ? contactFields() : cvFields();
+        postMock.mock.mockImplementation(async () => {
+            throw Object.assign(new Error('Rejected'), { code: 'ERR_BAD_REQUEST', response: { status: 422 } });
+        });
+        const send = () => endpoint === 'con' ? request('con', fields) : requestCv(fields);
+        const failure = await send(); check(failure, 502, false);
+        postMock.mock.mockImplementation(providerSuccess);
+        assert.deepEqual((await send()).body, failure.body);
+        assert.equal(postMock.mock.callCount(), 1); assert.equal(deleteMock.mock.callCount(), 0);
     });
 }
