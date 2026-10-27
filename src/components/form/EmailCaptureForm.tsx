@@ -1,4 +1,7 @@
-import { useState, type FormEvent } from 'react';
+import { useEmailCaptureForm } from '../../hooks/useEmailCaptureForm';
+import type { EmailFormSource } from '../../utils/formSubmission';
+import { HoneypotField } from './HoneypotField';
+import { Spinner } from '../../assets/icons/Spinner';
 import styles from '../../styles/modules/form/emailCaptureForm.module.css';
 
 interface EmailCaptureFormProps {
@@ -6,21 +9,23 @@ interface EmailCaptureFormProps {
   label: string;
   buttonText: string;
   variant: 'dark' | 'light';
+  formSource: EmailFormSource;
 }
 
-export function EmailCaptureForm({ id, label, buttonText, variant }: EmailCaptureFormProps) {
-  const [email, setEmail] = useState('');
-  const [error, setError] = useState('');
+export function EmailCaptureForm({ id, label, buttonText, variant, formSource }: EmailCaptureFormProps) {
+  const { values, error, submission, handleChange, handleSubmit, isSubmitting, isBlocked } = useEmailCaptureForm(formSource);
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
-      setError('Ingresa un correo electrónico válido.');
-      return;
-    }
-    setError('');
-    // Integrar aquí la suscripción o solicitud cuando exista un servicio de contacto.
-  };
-
-  return <form className={`${styles.form} ${styles[variant]}`} onSubmit={handleSubmit} noValidate><label htmlFor={id}>{label}</label><div className={styles.controls}><input id={id} type="email" placeholder={label} value={email} onChange={(event) => { setEmail(event.target.value); setError(''); }} required aria-invalid={Boolean(error)} aria-describedby={error ? `${id}-error` : undefined} /><button type="submit">{buttonText}</button></div>{error && <span className={styles.error} id={`${id}-error`} role="alert">{error}</span>}</form>;
+  return <form className={`${styles.form} ${styles[variant]}`} onSubmit={handleSubmit} aria-busy={isSubmitting} noValidate>
+    <label htmlFor={id}>{label}</label>
+    <div className={styles.controls}>
+      <input id={id} name="email" type="email" autoComplete="email" maxLength={254} placeholder={label} value={values.email} onChange={handleChange} disabled={isSubmitting} required aria-invalid={Boolean(error)} aria-describedby={error ? `${id}-error` : undefined} />
+      <button type="submit" disabled={isBlocked}>
+        {isSubmitting && <span aria-hidden="true"><Spinner size={18} /></span>}
+        <span>{isSubmitting ? 'Enviando...' : buttonText}</span>
+      </button>
+    </div>
+    <HoneypotField id={`${id}-website`} value={values.website} onChange={handleChange} />
+    {error && <span className={styles.error} id={`${id}-error`} role="alert">{error}</span>}
+    {submission.message && <p className={submission.status === 'success' ? styles.success : styles.error} role={submission.status === 'success' ? 'status' : 'alert'}>{submission.message}</p>}
+  </form>;
 }

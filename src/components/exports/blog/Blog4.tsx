@@ -10,7 +10,7 @@ export function Blog4() {
           <h2>Suscríbete a nuestra Newsletter</h2>
           <p>Recibe semanalmente los mejores insights sobre finanzas personales, bienestar corporativo y protección familiar directo en tu bandeja de entrada.</p>
         </div>
-        <EmailCaptureForm id="newsletter-email" label="Tu correo electrónico" buttonText="Suscribirse ahora" variant="dark" />
+        <EmailCaptureForm id="newsletter-email" label="Tu correo electrónico" buttonText="Suscribirse ahora" variant="dark" formSource="newsletter_blog" />
         <p className={styles.legal}>Al suscribirte, aceptas nuestra Política de Privacidad y el uso de tus datos para fines informativos.</p>
       </div>
     </section>

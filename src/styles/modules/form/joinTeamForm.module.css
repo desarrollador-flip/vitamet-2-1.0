@@ -16,6 +16,10 @@
 .field input:focus-visible, .field select:focus-visible { outline: 3px solid #85c8e3; outline-offset: 2px; }
 .field [aria-invalid='true'] { border-color: #b42318; }
 .error { color: #b42318; font-size: 14px; }
+.success { color: #18703a; font-size: 14px; }
+.feedback { grid-column: 1 / -1; }
+.submit { display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+.submit:disabled { opacity: .6; cursor: not-allowed; }
 .submit { align-self: stretch; min-height: 50px; padding: 12px 24px; border: 0; border-radius: 4px; background: var(--green-color); color: #fff; font: inherit; font-weight: 700; cursor: pointer; }
 .submit:focus-visible { outline: 3px solid var(--skyblue-color); outline-offset: 3px; }
 @media (max-width: 575px) { .form { grid-template-columns: 1fr; } .field:nth-child(3), .field:nth-child(4), .submit { grid-column: auto; } .submit { width: 100%; } }

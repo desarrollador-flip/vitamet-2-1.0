@@ -11,5 +11,9 @@
 .light .controls button { background: var(--blue-color); color: var(--white-color); }
 .error { color: #b42318; font-size: 14px; }
 .dark .error { color: #fff3a3; }
+.success { color: #18703a; font-size: 14px; }
+.dark .success { color: #e3ffb0; }
+.controls button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+.controls button:disabled { opacity: .6; cursor: not-allowed; }
 .controls button:focus-visible, .controls input:focus-visible { outline: 3px solid var(--skyblue-color); outline-offset: 2px; }
 @media (max-width: 479px) { .controls { flex-direction: column; } }

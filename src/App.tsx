@@ -1,5 +1,6 @@
-import { lazy, Suspense } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { lazy, Suspense, useEffect } from 'react';
+import { Route, Routes, useLocation } from 'react-router-dom';
+import { getFormUtm } from './utils/formUtm';
 
 import { Navbar } from './components/common/Navbar';
 import { Footer } from './components/common/Footer';
@@ -16,6 +17,9 @@ import { ScrollToTop } from './utils/scrollToTop';
 const AgentePage = lazy(() => import('./components/pages/AgentePage'));
 
 function App() {
+  const { search } = useLocation();
+  useEffect(() => { getFormUtm(search); }, [search]);
+
   return (
     <>
       <ScrollToTop />
