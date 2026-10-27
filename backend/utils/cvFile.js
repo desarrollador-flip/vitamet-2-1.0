@@ -5,7 +5,7 @@ const { FormInputError, requireInput } = require('./formValidation');
 // Airtable documenta hasta 5 MB; se usa la interpretación decimal conservadora.
 const maxCvBytes = 5_000_000;
 const docxMime = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
-const invalidFile = 'El CV debe ser un archivo PDF o DOCX válido, sin cifrado.';
+const invalidFile = 'El CV debe ser un archivo PDF o DOCX válido.';
 
 async function validateDocx(buffer) {
     const zip = await yauzl.fromBufferPromise(buffer, { lazyEntries: true, strictFileNames: true });
