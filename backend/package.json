@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "node --test tests/submitEmail.test.js"
+    "test": "node --test tests/submitEmail.test.js tests/submitConCv.test.js"
   },
   "keywords": [],
   "author": "",
@@ -13,6 +13,8 @@
     "axios": "^1.17.0",
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "multer": "^2.5.0",
+    "yauzl": "^3.4.0"
   }
 }

@@ -8,6 +8,8 @@ const app = express();
 app.use(cors());
 // Parsear este endpoint antes de los parsers globales para aplicar su límite y errores JSON.
 app.use('/api', require('./routes/submitEmail'));
+app.use('/api', require('./routes/submitCon'));
+app.use('/api', require('./routes/submitCv'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
