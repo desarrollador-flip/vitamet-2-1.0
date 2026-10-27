@@ -9,6 +9,7 @@ lerna-debug.log*
 
 node_modules
 .env
+env-vitamet.php
 agentes.php
 helpers.php
 submit.php
