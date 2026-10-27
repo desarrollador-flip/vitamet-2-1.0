@@ -53,5 +53,5 @@ export function useJoinTeamForm() {
     return Object.keys(nextErrors).length === 0;
   };
 
-  return { values, errors, handleChange, validate };
+  return { values, errors, handleChange, updateCv, validate };
 }

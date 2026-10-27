@@ -1,316 +1,406 @@
 .fondo {
-    background-image: url('/src/assets/images/agente/patron-fondo.webp');
-    background-repeat: repeat;
-    background-size: auto;
-    overflow-x: hidden;
+    background: #f0f6fa;
+    color: var(--text-color);
 }
 
 .sectionContainer {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: start;
+    gap: 32px;
+    width: 100%;
+    max-width: 1240px;
     min-height: calc(100dvh - 190px);
-    background-color: var(--blue-color-2);
-    padding: 30px 20px;
-    padding-bottom: 60px;
-    gap: 30px;
+    margin: 0 auto;
+    padding: 28px 20px 48px;
+}
+
+.cardContainer,
+.perfilContainer {
+    border: 1px solid #dce6ec;
+    border-radius: 16px;
+    background: #fff;
 }
 
 .cardContainer {
     position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    padding-top: 30px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: 'identity' 'photo' 'info';
+    gap: 24px;
+    padding: 20px;
+    box-shadow: 0 8px 28px rgba(1, 101, 169, .05);
 }
 
 .botonShared {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 20px;
+    right: 20px;
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border: 1px solid #dce6ec;
+    border-radius: 8px;
+    background: #f5f9fc;
+    color: var(--blue-color);
+    cursor: pointer;
 }
 
 .iconoShared {
-    width: 30px;
-    height: 30px;
-    color: var(--primary-color);
+    display: block;
+    width: 20px;
+    height: 20px;
 }
 
 .agenteContainer {
-    display: flex;
-    flex-direction: column;
-    width: 325px;
-    gap: 5px;
+    grid-area: identity;
+    min-width: 0;
+    padding-right: 52px;
+}
+
+.cargo {
+    display: inline-block;
+    margin-bottom: 12px;
+    padding: 6px 10px;
+    border-radius: 6px;
+    background: var(--green-color);
+    color: var(--black-color);
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1.4;
+    letter-spacing: .04em;
+    overflow-wrap: anywhere;
 }
 
 .agenteContainer h1 {
-    color: var(--white-color);
-    font-size: 32px;
+    color: var(--blue-color);
+    font-size: clamp(28px, 5vw, 38px);
+    line-height: 1.12;
+    overflow-wrap: anywhere;
 }
 
-.agenteContainer h2 {
-    display: inline-block;
-    color: var(--primary-color);
-    background-color: var(--green-color);
+.foto {
+    display: block;
+    grid-area: photo;
+    width: 100%;
+    aspect-ratio: 1 / 1;
     border-radius: 10px;
-    padding: 2px 10px;
-    font-size: 14px;
-}
-
-.cardContainer img {
-    border-radius: 10px;
-    width: 330px;
+    background: #eaf3fa;
+    object-fit: cover;
+    object-position: center 25%;
 }
 
 .infoContainer {
     display: flex;
+    grid-area: info;
+    min-width: 0;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
+    gap: 24px;
 }
 
 .vcard {
     display: flex;
-    flex-direction: row;
     align-items: center;
     justify-content: center;
-    border-radius: 10px;
-    text-decoration: none;
-    color: var(--white-color);
-    background-color: var(--primary-color);
-    padding: 10px 0;
-    width: 330px;
     gap: 10px;
+    width: 100%;
+    min-height: 50px;
+    padding: 12px 18px;
+    border-radius: 7px;
+    background: var(--blue-color);
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
 }
 
 .vcard img {
-    filter: none;
-    width: 25px;
+    flex: none;
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
 }
 
 .experienciaContainer {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    margin: 0;
 }
 
 .expDetail {
     display: flex;
+    min-width: 0;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
-    background-color: var(--white-color);
-    border-radius: 10px;
-    padding: 10px 0;
-    width: 100px;
-    gap: 5px;
+    gap: 8px;
+    padding: 16px 6px;
+    border: 1px solid #dce6ec;
+    border-top: 3px solid var(--green-color);
+    border-radius: 8px;
+    background: #f7fafc;
+    text-align: center;
 }
 
-.expDetail h3 {
-    z-index: 1;
-    color: var(--primary-color);
-    font-size: 18px;
+.expDetail dt {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: .03em;
 }
 
-.expDetail p {
-    color: var(--text-color);
-    font-size: 12px;
+.expDetail dd {
+    margin: 0;
+    color: var(--blue-color);
+    font-family: var(--font-heading);
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.25;
+    overflow-wrap: anywhere;
 }
 
 .canalesContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    justify-content: center;
-    gap: 20px;
+    min-width: 0;
 }
 
-.canalesContainer h3 {
-    color: var(--white-color);
-    letter-spacing: 1px;
-    font-size: 16px;
+.canalesContainer h2 {
+    margin-bottom: 16px;
+    color: var(--blue-color);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: .08em;
 }
 
 .contactoContainer {
-    filter: drop-shadow(0px 0px 10px var(--blue-color));
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
 }
 
 .contactoDetail {
     display: flex;
-    flex-direction: row;
+    min-width: 0;
     align-items: center;
-    justify-content: start;
+    gap: 18px;
+    padding: 20px;
+    border: 1px solid #dce6ec;
     border-radius: 10px;
+    background: #fff;
+    color: var(--blue-color);
     text-decoration: none;
-    color: var(--primary-color);
-    background-color: var(--white-color);
-    width: 330px;
-    padding: 30px 20px;
-    gap: 10px;
+}
+
+.contactoDetail > img,
+.whatsappIcon {
+    flex: 0 0 40px;
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
 }
 
 .botonWhatsapp {
+    display: block;
     width: 40px;
     height: 40px;
     color: #25d366;
 }
 
-.contactoDetail img {
-    width: 40px;
+.contactoDetail > div {
+    min-width: 0;
 }
 
 .contactoDetail p {
+    margin-bottom: 4px;
     color: var(--text-color);
     font-size: 12px;
+    line-height: 1.4;
 }
 
-.contactoDetail h4 {
-    color: var(--text-color);
-    font-size: 16px;
+.channelAction {
+    font-family: var(--font-heading);
+    font-size: 20px;
+    font-weight: 600;
 }
 
 .perfilContainer {
-    filter: drop-shadow(0px 0px 10px var(--blue-color));
     display: flex;
+    min-width: 0;
     flex-direction: column;
-    align-items: start;
-    justify-content: center;
-    background-color: var(--white-color);
-    border-radius: 10px;
-    width: 330px;
-    padding: 30px 20px;
-    gap: 20px;
+    gap: 18px;
+    padding: 24px 20px;
 }
 
-.perfilContainer h3 {
-    color: var(--primary-color);
-    font-size: 18px;
+.perfilContainer h2 {
+    color: var(--blue-color);
+    font-size: 26px;
+    line-height: 1.2;
 }
 
-.perfilContainer p {
-    color: var(--text-color);
+.perfilContainer > p {
     font-size: 16px;
+    line-height: 1.7;
 }
 
 .palomas {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    width: 330px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+    margin: 4px 0 0;
+    padding: 20px 0 0;
+    border-top: 1px solid #e3eaf0;
+    list-style: none;
 }
 
 .paloma {
     display: flex;
-    flex-direction: row;
     align-items: center;
-    justify-content: start;
-    width: 330px;
     gap: 10px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.paloma > span {
+    flex: 0 0 20px;
 }
 
 .check {
-    width: 15px;
-    height: 15px;
+    display: block;
+    width: 20px;
+    height: 20px;
 }
 
-.paloma p {
-    color: var(--text-color);
-    font-size: 16px;
+.botonShared:focus-visible,
+.vcard:focus-visible,
+.contactoDetail:focus-visible {
+    outline: 3px solid var(--skyblue-color);
+    outline-offset: 4px;
+}
+
+@media (min-width: 576px) {
+    .sectionContainer {
+        padding-top: 36px;
+    }
+
+    .cardContainer {
+        padding: 28px;
+    }
+
+    .botonShared {
+        top: 28px;
+        right: 28px;
+    }
+
+    .cargo {
+        font-size: 12px;
+    }
+
+    .foto {
+        max-height: 440px;
+        aspect-ratio: 4 / 3;
+    }
+
+    .expDetail {
+        padding: 18px 12px;
+    }
+
+    .expDetail dt {
+        font-size: 11px;
+    }
+
+    .expDetail dd {
+        font-size: 22px;
+    }
+
+    .perfilContainer {
+        padding: 28px;
+    }
+
+    .palomas {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
 }
 
 @media (min-width: 992px) {
     .sectionContainer {
+        gap: 32px;
         min-height: calc(100dvh - 226px);
-        padding: 80px 20px;
-        gap: 60px;
+        padding-top: 40px;
+        padding-bottom: 56px;
     }
 
     .cardContainer {
-        display: grid;
-        grid-template-columns: 300px 1fr;
-        grid-template-rows: auto 0fr;
-        grid-template-areas:
-            'img agente'
-            'img info';
-        gap: 40px;
+        grid-template-columns: minmax(0, .9fr) minmax(0, 1.5fr);
+        grid-template-rows: 1fr 1fr;
+        grid-template-areas: 'photo identity' 'photo info';
+        column-gap: 40px;
+        padding: 32px;
+    }
+
+    .botonShared {
+        top: 24px;
+        right: 24px;
     }
 
     .agenteContainer {
-        width: 510px;
-        grid-area: agente;
+        align-self: end;
     }
 
-    .cardContainer img {
-        grid-area: img;
-        width: 100%;
-        object-fit: cover;
+    .agenteContainer h1 {
+        font-size: clamp(36px, 3.4vw, 44px);
+    }
+
+    .foto {
+        align-self: center;
+        height: 100%;
+        min-height: 340px;
+        max-height: 420px;
+        aspect-ratio: 1 / 1.1;
     }
 
     .infoContainer {
-        grid-area: info;
-        align-items: start;
-        margin-top: -25px;
+        align-self: start;
     }
 
     .vcard {
-        width: 250px;
-    }
-
-    .vcard img {
-        width: 25px;
-    }
-
-    .expDetail {
-        align-items: start;
-        padding: 10px 15px;
-        width: 160px;
-    }
-
-    .expDetail h3 {
-        font-size: 20px;
-    }
-
-    .expDetail p {
-        letter-spacing: 1px;
-    }
-
-    .canalesContainer {
-        margin-top: 40px;
+        align-self: flex-start;
+        width: auto;
+        min-width: 220px;
     }
 
     .contactoContainer {
-        flex-direction: row;
-        gap: 25px;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 20px;
     }
 
     .contactoDetail {
-        width: 267px;
-        padding: 20px;
+        padding: 24px;
     }
 
     .perfilContainer {
-        width: 850px;
+        padding: 32px;
     }
 
     .palomas {
-        width: 780px;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (hover: hover) {
+    .botonShared,
+    .contactoDetail {
+        transition: border-color .15s ease, background-color .15s ease;
     }
 
-    .paloma {
-        width: 240px;
+    .botonShared:hover,
+    .contactoDetail:hover {
+        border-color: var(--blue-color);
+        background: #f7fbfe;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .botonShared,
+    .contactoDetail {
+        transition: none;
     }
 }

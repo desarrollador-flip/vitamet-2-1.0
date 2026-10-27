@@ -2,16 +2,124 @@
   "success": true,
   "data": [
     {
+      "nombre": "Jennifer Pedraza Miranda",
+      "cargo": "Asesor Especializado En Soluciones",
+      "correo": "jenniferpm0716@gmail.com",
+      "status": "Activo",
+      "telefono": 5618264441,
+      "whatsapp": "+525618264441",
+      "exp": 4,
+      "clientes": 592,
+      "path": "jennifer-pedraza-miranda",
+      "foto": "https://res.cloudinary.com/qpfuo0ls/image/upload/v1785509792/Jennifer_Pedraza_Miranda_500PX_FONDO_ufyvwy.png"
+    },
+    {
+      "nombre": "Luz Minerva Josefina Gutierrez Sosa",
+      "cargo": "Asesor Especializado En Soluciones",
+      "correo": "mgutierrezsosa@prodigy.net.mx",
+      "status": "Activo",
+      "telefono": 8941053516,
+      "whatsapp": "+528941053516",
+      "exp": 5,
+      "clientes": 888,
+      "path": "luz-minerva-josefina-gutierrez-sosa",
+      "foto": "https://res.cloudinary.com/qpfuo0ls/image/upload/v1785509793/Luz_Minerva_Josefina_Gutierrez_Sosa_500PX_FONDO_ibxhlw.png"
+    },
+    {
+      "nombre": "Alfredo Arellano Navarro",
+      "cargo": "Asesor Especializado En Soluciones",
+      "correo": "alfredoa.vitamet@gmail.com",
+      "status": "Activo",
+      "telefono": 4521562013,
+      "whatsapp": "+524521562013",
+      "exp": 5,
+      "clientes": 1295,
+      "path": "alfredo-arellano-navarro",
+      "foto": "https://res.cloudinary.com/qpfuo0ls/image/upload/v1785509775/Alfredo_Arellano_Navarro_500PX_FONDO_kgbpww.png"
+    },
+    {
       "nombre": "Maria Teresa Duran Flores",
-      "cargo": "ASESOR ESPECIALIZADO",
+      "cargo": "Asesor Especializado En Soluciones",
       "correo": "mayteduran.vitamet@gmail.com",
-      "status": "Inactivo",
+      "status": "Activo",
       "telefono": 4776503500,
       "whatsapp": "+524776503500",
       "exp": 4,
-      "clientes": 666,
+      "clientes": 814,
       "path": "maria-teresa-duran-flores",
-      "foto": "https://i.ibb.co/jPbzq9Ht/69151d0ba61e.png"
+      "foto": "https://res.cloudinary.com/qpfuo0ls/image/upload/v1785509793/Mar%C3%ADa_Teresa_Duran_Flores_500PX_FONDO_hijzgo.png"
+    },
+    {
+      "nombre": "Ma del Rocio Olivos Sanchez",
+      "cargo": "Asesor Especializado En Soluciones",
+      "correo": "rocioolivos@gmail.com",
+      "status": "Activo",
+      "telefono": 8110773639,
+      "whatsapp": "+528110773639",
+      "exp": 4,
+      "clientes": 851,
+      "path": "ma-del-rocio-olivos-sanchez",
+      "foto": "https://res.cloudinary.com/qpfuo0ls/image/upload/v1786639711/Ma._del_Rocio_Olivos_Sanchez_500PX_FONDO_1_ryfuee.png"
+    },
+    {
+      "nombre": "Andrea Viridiana Díaz Ruelas",
+      "cargo": "Asesor Especialisado En Soluciones",
+      "correo": "adiaz.vitamet@gmail.com",
+      "status": "Activo",
+      "telefono": 3317282629,
+      "whatsapp": "+523317282629",
+      "exp": 4,
+      "clientes": 814,
+      "path": "andrea-viridiana-diaz-ruelas",
+      "foto": "https://res.cloudinary.com/qpfuo0ls/image/upload/v1786660568/Andrea_Viridiana_D%C3%ADaz_Ruelas_500PX_FONDO_uuie6b.png"
+    },
+    {
+      "nombre": "Gustavo Israel Lopez Garcia",
+      "cargo": "Asesor Especializado En Soluciones",
+      "correo": "g.israel.lopez@gmail.com",
+      "status": "Activo",
+      "telefono": 4421731293,
+      "whatsapp": "+524421731293",
+      "exp": 4,
+      "clientes": 703,
+      "path": "gustavo-israel-lopez-garcia",
+      "foto": "https://res.cloudinary.com/qpfuo0ls/image/upload/v1786639782/Gustavo_Israel_Lopez_Garcia_500PX_FONDO_1_gwdnoq.png"
+    },
+    {
+      "nombre": "Brenda Lara Rivera",
+      "cargo": "Asesor Especializado En Soluciones",
+      "correo": "brenda.0503@gmail.com",
+      "status": "Activo",
+      "telefono": 8333918920,
+      "whatsapp": "+528333918920",
+      "exp": 4,
+      "clientes": 592,
+      "path": "brenda-lara-rivera",
+      "foto": "https://res.cloudinary.com/qpfuo0ls/image/upload/v1785509792/Brenda_Lara_Rivera_500PX_FONDO_qcttaf.png"
+    },
+    {
+      "nombre": "Jorge Rolando Zamora Rendon",
+      "cargo": "Asesor Especializado En Soluciones",
+      "correo": "jzamora.vitamet@gmail.com",
+      "status": "Activo",
+      "telefono": 5645344079,
+      "whatsapp": "+525645344079",
+      "exp": 4,
+      "clientes": 814,
+      "path": "jorge-rolando-zamora-rendon",
+      "foto": "https://res.cloudinary.com/qpfuo0ls/image/upload/v1786639993/Jorge_Rolando_Zamora_Rinc%C3%B3n_500PX_FONDO_1_aki3su.png"
+    },
+    {
+      "nombre": "David Homero Valdés Ibarra",
+      "cargo": "Asesor Especializado En Soluciones",
+      "correo": "davidv.vitamet@gmail.com",
+      "status": "Activo",
+      "telefono": 8441853807,
+      "whatsapp": "+528441853807",
+      "exp": 6,
+      "clientes": 1332,
+      "path": "david-homero-valdes-ibarra",
+      "foto": "https://res.cloudinary.com/qpfuo0ls/image/upload/v1785509792/David_Homero_Vald%C3%A9s_Ibarra_500PX_FONDO_objno1.png"
     }
   ]
 }

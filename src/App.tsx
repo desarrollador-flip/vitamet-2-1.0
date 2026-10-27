@@ -7,14 +7,8 @@ import { HomePage } from './components/pages/HomePage';
 import { NosotrosPage } from './components/pages/NosotrosPage';
 import { ServiciosPage } from './components/pages/ServiciosPage';
 import { BlogPage } from './components/pages/BlogPage';
-
-import { ReclutaPage } from './components/pages/ReclutaPage';
-
-/*
-
 import { ContactoPage } from './components/pages/ContactoPage';
-
- */
+import { ReclutaPage } from './components/pages/ReclutaPage';
 
 import { Cargando } from './components/utils/Cargando';
 import { ScrollToTop } from './utils/scrollToTop';
@@ -40,17 +34,9 @@ function App() {
           <Route path="/nosotros" element={<NosotrosPage />} />
           <Route path="/servicios" element={<ServiciosPage />} />
           <Route path="/blog" element={<BlogPage />} />
-
+          <Route path="/contacto" element={<ContactoPage />} />
           <Route path="/recluta" element={<ReclutaPage />} />
           <Route path="/politica-privacidad" element={<HomePage />} />
-
-          {/* 
-                    
-                    <Route path="/recluta" element={<ReclutaPage />} />
-                    <Route path="/contacto" element={<ContactoPage />} />
-                    
-                    
-                     */}
           <Route path="/agentes/:slug" element={<AgentePage />}></Route>
         </Routes>
       </Suspense>

@@ -5,7 +5,7 @@ export const datosContacto = {
     },
     telefono: {
         label: 'Teléfono',
-        title: '81 885 2380',
+        title: '777 885 2380',
     },
     email: {
         label: 'Email',

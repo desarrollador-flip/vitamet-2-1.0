@@ -50,54 +50,59 @@ function AgentePage() {
                 canonical={`https://vitamet.com.mx/agentes/${agente.path}`}
             />
 
-            <section className={styles.sectionContainer}>
-                <div className={styles.cardContainer}>
-                    <button className={styles.botonShared} onClick={canShare ? compartir : copyLink} data-cta="agente-shared-btn">
-                        {canShare ? <IconoCompartir className={styles.iconoShared} /> : <IconoCopiar className={styles.iconoShared} />}
+            <div className={styles.sectionContainer}>
+                <section className={styles.cardContainer} aria-labelledby="agente-name">
+                    <button
+                        type="button"
+                        className={styles.botonShared}
+                        onClick={canShare ? compartir : copyLink}
+                        aria-label={canShare ? 'Compartir tarjeta digital' : 'Copiar enlace de la tarjeta digital'}
+                        data-cta="agente-shared-btn"
+                    >
+                        <span aria-hidden="true">
+                            {canShare ? <IconoCompartir className={styles.iconoShared} /> : <IconoCopiar className={styles.iconoShared} />}
+                        </span>
                     </button>
 
                     <div className={styles.agenteContainer}>
-                        <div>
-                            <h2>{agente.cargo}</h2>
-                        </div>
-
-                        <h1>{agente.nombre}</h1>
+                        <span className={styles.cargo}>{agente.cargo}</span>
+                        <h1 id="agente-name">{agente.nombre}</h1>
                     </div>
 
-                    <img src={agente.foto} loading="lazy" alt={`Foto de ${agente.nombre}`} />
+                    <img className={styles.foto} src={agente.foto} loading="lazy" alt={`Foto de ${agente.nombre}`} />
 
                     <div className={styles.infoContainer}>
                         <DownloadContact className={styles.vcard} agente={agente} filename={agente.path} dataCta="agente-guardar-btn" />
 
-                        <div className={styles.experienciaContainer}>
+                        <dl className={styles.experienciaContainer}>
                             <div className={styles.expDetail}>
-                                <p>EXPERIENCIA</p>
-                                <h3>+{agente.exp} Años</h3>
+                                <dt>EXPERIENCIA</dt>
+                                <dd>+{agente.exp} Años</dd>
                             </div>
 
                             <div className={styles.expDetail}>
-                                <p>CLIENTES</p>
-                                <h3>+{agente.clientes}</h3>
+                                <dt>CLIENTES</dt>
+                                <dd>+{agente.clientes}</dd>
                             </div>
 
                             <div className={styles.expDetail}>
-                                <p>ESTATUS</p>
-                                <h3>{agente.status}</h3>
+                                <dt>ESTATUS</dt>
+                                <dd>{agente.status}</dd>
                             </div>
-                        </div>
+                        </dl>
                     </div>
-                </div>
+                </section>
 
-                <div className={styles.canalesContainer}>
-                    <h3>CANALES DE ATENCIÓN</h3>
+                <section className={styles.canalesContainer} aria-labelledby="agente-canales-title">
+                    <h2 id="agente-canales-title">CANALES DE ATENCIÓN</h2>
 
                     <div className={styles.contactoContainer}>
                         <a href={`tel:${agente.telefono}`} className={styles.contactoDetail} data-cta="agente-llamar-btn">
-                            <img src={imgLlamada} alt="icono WhatsApp" />
+                            <img src={imgLlamada} alt="" />
 
                             <div>
                                 <p>Llamar Ahora</p>
-                                <h4>Llamar</h4>
+                                <span className={styles.channelAction}>Llamar</span>
                             </div>
                         </a>
 
@@ -107,27 +112,27 @@ function AgentePage() {
                             message={`Hola ${agente.nombre}, vi tu tarjeta digital y quiero información.`}
                             dataCta="agente-whatsapp-btn"
                         >
-                            <IconoWhatsApp className={styles.botonWhatsapp} />
+                            <span className={styles.whatsappIcon} aria-hidden="true"><IconoWhatsApp className={styles.botonWhatsapp} /></span>
 
                             <div>
                                 <p>Mensaje directo</p>
-                                <h4>WhatsApp</h4>
+                                <span className={styles.channelAction}>WhatsApp</span>
                             </div>
                         </WhatsAppButton>
 
                         <a href={`mailto:${agente.correo}`} className={styles.contactoDetail} data-cta="agente-correo-btn">
-                            <img src={imgEmail} alt="icono WhatsApp" />
+                            <img src={imgEmail} alt="" />
 
                             <div>
                                 <p>Enviar correo</p>
-                                <h4>Email</h4>
+                                <span className={styles.channelAction}>Email</span>
                             </div>
                         </a>
                     </div>
-                </div>
+                </section>
 
-                <div className={styles.perfilContainer}>
-                    <h3>Perfil Profesional</h3>
+                <section className={styles.perfilContainer} aria-labelledby="agente-perfil-title">
+                    <h2 id="agente-perfil-title">Perfil Profesional</h2>
 
                     <p>
                         Especialista en la planeación financiera y protección del patrimonio a través de seguros de vida y gastos médicos mayores. Mi
@@ -140,17 +145,17 @@ function AgentePage() {
                         protejan su futuro y el de su familia.
                     </p>
 
-                    <div className={styles.palomas}>
+                    <ul className={styles.palomas}>
                         {palomasAgentes.map((paloma) => (
-                            <div key={paloma.id} className={styles.paloma}>
-                                <IconoCheck className={styles.check} />
+                            <li key={paloma.id} className={styles.paloma}>
+                                <span aria-hidden="true"><IconoCheck className={styles.check} /></span>
 
                                 <p>{paloma.texto}</p>
-                            </div>
+                            </li>
                         ))}
-                    </div>
-                </div>
-            </section>
+                    </ul>
+                </section>
+            </div>
         </main>
     );
 }
