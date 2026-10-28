@@ -32,7 +32,7 @@ export function PoliticaPrivacidad1() {
         <header className={styles.header}>
           <h1 id="privacy-title">Política de Privacidad</h1>
           <p>
-            En <SmartLink to="/">VitaMet</SmartLink> reconocemos la importancia de cuidar tu información personal.
+            En <SmartLink dataLink="privacidad-inicio-link" to="/">VitaMet</SmartLink> reconocemos la importancia de cuidar tu información personal.
             Esta política explica qué datos recibimos a través de los formularios del sitio, para qué los utilizamos
             y cómo puedes contactarnos en relación con su tratamiento.
           </p>
@@ -133,9 +133,9 @@ export function PoliticaPrivacidad1() {
           <p>
             Para solicitar el acceso, la rectificación, la cancelación o la oposición al tratamiento de tus
             datos personales, o para resolver dudas sobre el uso de tu información, escríbenos a{' '}
-            <a href={`mailto:${datosContacto.email.title}`}>{datosContacto.email.title}</a>.
+            <a data-link="privacidad-email-link" href={`mailto:${datosContacto.email.title}`}>{datosContacto.email.title}</a>.
             También puedes ponerte en contacto con nuestro equipo desde la página de{' '}
-            <SmartLink to="/contacto">Contacto</SmartLink>.
+            <SmartLink dataLink="privacidad-contacto-link" to="/contacto">Contacto</SmartLink>.
           </p>
         </section>
 
@@ -147,7 +147,7 @@ export function PoliticaPrivacidad1() {
           </p>
         </section>
 
-        <SmartLink to="/" className={styles.backLink}>Volver al inicio</SmartLink>
+        <SmartLink dataLink="privacidad-inicio-btn" to="/" className={styles.backLink}>Volver al inicio</SmartLink>
       </div>
     </article>
   );

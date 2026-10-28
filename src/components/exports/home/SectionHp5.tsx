@@ -17,7 +17,7 @@ export const SectionHp5 = () => {
 
       <div className={styles.rutasContainer}>
         {rutasSectionHp5.map((ruta, index) => (
-          <SmartLink to={ruta.link} key={ruta.id} className={`${styles.ruta} ${styles[`ruta${index + 1}`]}`}>
+          <SmartLink to={ruta.link} dataLink={ruta.dataLink} key={ruta.id} className={`${styles.ruta} ${styles[`ruta${index + 1}`]}`}>
             <div className={styles.rutaHeader}>
               <img src={ruta.img} alt={ruta.titulo} />
 

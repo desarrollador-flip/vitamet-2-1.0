@@ -33,6 +33,7 @@ function deferred() {
 beforeEach(() => {
   window.history.replaceState({}, '', '/contacto');
   window.localStorage.clear();
+  window.dataLayer = [];
   container = document.createElement('div');
   document.body.append(container);
   root = createRoot(container);
@@ -115,6 +116,7 @@ for (const kind of kinds) {
   test(`${kind}: valida por campo, relaciones ARIA y limpia el error al editar`, async () => {
     await mount(kind); await submit();
     assert.equal(fetchMock.mock.callCount(), 0);
+    assert.deepEqual(window.dataLayer, []);
     const field = container.querySelector(`[name="${kind === 'email' ? 'email' : 'name'}"]`);
     assert.equal(field.getAttribute('aria-invalid'), 'true');
     assert.ok(document.getElementById(field.getAttribute('aria-describedby')));
@@ -148,6 +150,7 @@ for (const kind of kinds) {
         : { name: 'María Pérez', email: 'person@example.com', subject: 'asesoria', message: 'Quiero información sobre sus servicios.', formSource: 'consulta_contacto', utm, website: 'bot-content' });
     }
     assert.equal(reset.mock.callCount(), 1);
+    assert.deepEqual(window.dataLayer, [], 'Honeypot success is never a conversion');
     assert.equal(container.querySelector(`[name="${kind === 'email' ? 'email' : 'name'}"]`).value, '');
     assert.equal(container.querySelector('[name="website"]').value, '');
     assert.equal(container.querySelector('[type="submit"]').disabled, false);
@@ -160,16 +163,20 @@ for (const kind of kinds) {
     await submit(2);
     assert.equal(fetchMock.mock.callCount(), 1);
     assert.equal(container.querySelector('form').getAttribute('aria-busy'), 'true');
+    assert.deepEqual(window.dataLayer, [], 'No event before the response');
     assert.equal(container.querySelector('[type="submit"]').disabled, true);
     assert.ok(container.querySelector('button svg'));
     await act(async () => pending.resolve(reply(kind === 'cv' ? { ...fullSuccess, partial: false } : fullSuccess)));
     assert.equal(container.querySelector('form').getAttribute('aria-busy'), 'false');
+    assert.deepEqual(window.dataLayer, [{ event: 'formulario_enviado',
+      form_id: kind === 'email' ? 'newsletter_blog' : kind === 'con' ? 'consulta_contacto' : 'cv_contacto', page_path: '/contacto' }]);
   });
 
   test(`${kind}: rechazo confirmado conserva datos y permite un intento manual`, async () => {
     await mount(kind); await fill(kind);
     fetchMock.mock.mockImplementation(async () => reply({ success: false, message: 'Rejected' }, 400));
     await submit();
+    assert.deepEqual(window.dataLayer, []);
     const value = container.querySelector(`[name="${kind === 'email' ? 'email' : 'name'}"]`).value;
     assert.ok(value); assert.equal(container.querySelector('[type="submit"]').disabled, false);
     if (kind === 'cv') assert.match(container.querySelector('#join-cv-selected').textContent, /candidate.pdf/);
@@ -195,6 +202,7 @@ for (const kind of kinds) {
       assert.ok(container.querySelector(`[name="${kind === 'email' ? 'email' : 'name'}"]`).value);
       assert.ok(!container.textContent.includes('private-marker'));
       assert.match(container.querySelector('[role="alert"]').textContent, /No pudimos confirmar/);
+      assert.deepEqual(window.dataLayer, [], 'Failed or uncertain submissions do not emit');
       // Editar no desbloquea una solicitud cuyo resultado sigue siendo incierto.
       await change(kind === 'email' ? 'email' : 'name', kind === 'email' ? 'other@example.com' : 'Otro nombre');
       await submit(); assert.equal(fetchMock.mock.callCount(), 1);
@@ -216,6 +224,7 @@ test('email mantiene dos instancias independientes con orígenes explícitos', a
   });
   for (const form of container.querySelectorAll('form')) await act(async () => form.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true })));
   assert.deepEqual(fetchMock.mock.calls.map((call) => JSON.parse(call.arguments[1].body).formSource), ['newsletter_blog', 'asesoria_contacto']);
+  assert.deepEqual(window.dataLayer.map((entry) => entry.form_id), ['newsletter_blog', 'asesoria_contacto']);
 });
 
 test('CV parcial mantiene campos y archivo y nunca reenvía ni muestra éxito completo', async () => {
@@ -227,6 +236,7 @@ test('CV parcial mantiene campos y archivo y nunca reenvía ni muestra éxito co
   assert.match(container.querySelector('#join-cv-selected').textContent, /candidate.pdf/);
   assert.match(container.querySelector('.feedback[role="status"]').textContent, /no pudimos confirmar el CV/);
   assert.ok(!container.textContent.includes('Solicitud recibida correctamente.'));
+  assert.deepEqual(window.dataLayer, [], 'Partial CV is never a complete conversion');
 });
 
 test('CV exige partial:false para considerar completo un HTTP 200', async () => {
@@ -234,6 +244,7 @@ test('CV exige partial:false para considerar completo un HTTP 200', async () => 
   assert.equal(container.querySelector('[type="submit"]').disabled, true);
   assert.ok(container.querySelector('[name="name"]').value);
   assert.match(container.querySelector('[role="alert"]').textContent, /No pudimos confirmar/);
+  assert.deepEqual(window.dataLayer, []);
 });
 
 for (const size of [0, 5_000_001]) {
@@ -293,4 +304,65 @@ test('contacto conserva validación de asunto y mensaje antes de efectuar el POS
   assert.equal(fetchMock.mock.callCount(), 0);
   assert.equal(container.querySelector('[name="subject"]').getAttribute('aria-invalid'), 'true');
   assert.equal(container.querySelector('[name="message"]').getAttribute('aria-invalid'), 'true');
+});
+
+
+for (const [kind, formId, path] of [
+  ['email', 'newsletter_blog', '/blog'], ['email', 'asesoria_contacto', '/contacto'],
+  ['con', 'consulta_contacto', '/contacto'], ['cv', 'cv_contacto', '/contacto'],
+]) {
+  test(`${formId}: DOM identifica la acción y éxito confirmado emite una vez sin PII`, async () => {
+    window.history.replaceState({}, '', `${path}?email=private@example.com&utm_campaign=private-campaign`);
+    await mount(kind, formId); await fill(kind);
+    assert.equal(container.querySelector('form').getAttribute('data-form-id'), formId);
+    const pending = deferred(); fetchMock.mock.mockImplementation(() => pending.promise);
+    await submit(2);
+    assert.deepEqual(window.dataLayer, []);
+    assert.equal(fetchMock.mock.callCount(), 1);
+    await act(async () => pending.resolve(reply(kind === 'cv' ? { ...fullSuccess, partial: false } : fullSuccess)));
+    assert.deepEqual(window.dataLayer, [{ event: 'formulario_enviado', form_id: formId, page_path: path }]);
+    await submit(); // reset fields are invalid; never emit again on re-render or submit
+    assert.equal(window.dataLayer.length, 1);
+  });
+
+  test(`${formId}: falso éxito del honeypot conserva el comportamiento sin emitir`, async () => {
+    await mount(kind, formId); await fill(kind); await change('website', 'bot.example');
+    succeed(kind); await submit(2);
+    assert.equal(fetchMock.mock.callCount(), 1);
+    assert.deepEqual(window.dataLayer, []);
+    assert.equal(container.querySelector('[name="website"]').value, '');
+  });
+
+  for (const scenario of ['validation', 'rejection', 'partial', 'network']) {
+    test(`${formId}: ${scenario} no emite formulario_enviado`, async () => {
+      await mount(kind, formId);
+      if (scenario !== 'validation') await fill(kind);
+      fetchMock.mock.mockImplementation(async () => {
+        if (scenario === 'network') throw new Error('Network failed');
+        return scenario === 'partial'
+          ? reply({ ...fullSuccess, partial: true, code: 'CV_ATTACHMENT_FAILED' })
+          : reply({ success: false, message: 'Rejected' }, 422);
+      });
+      await submit(2);
+      assert.deepEqual(window.dataLayer, []);
+      assert.equal(fetchMock.mock.callCount(), scenario === 'validation' ? 0 : 1);
+    });
+  }
+}
+
+test('formulario_enviado usa la ruta actual al confirmar, sin query ni hash', async () => {
+  await mount('con'); await fill('con');
+  const pending = deferred(); fetchMock.mock.mockImplementation(() => pending.promise);
+  await submit();
+  window.history.replaceState({}, '', '/servicios?email=private@example.com#private');
+  await act(async () => pending.resolve(reply()));
+  assert.deepEqual(window.dataLayer, [{ event: 'formulario_enviado', form_id: 'consulta_contacto', page_path: '/servicios' }]);
+});
+
+test('analytics bloqueado no impide reset ni desbloqueo tras éxito', async () => {
+  await mount('email'); await fill('email'); succeed('email');
+  window.dataLayer = { push() { throw new Error('Blocked analytics'); } };
+  await submit();
+  assert.equal(container.querySelector('[name="email"]').value, '');
+  assert.equal(container.querySelector('[type="submit"]').disabled, false);
 });

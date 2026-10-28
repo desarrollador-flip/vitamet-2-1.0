@@ -31,7 +31,7 @@ export function Nosotros2() {
         <article>
           <h3>Cobertura Nacional</h3>
           <p>Presencia en las principales ciudades de la República Mexicana con atención personalizada.</p>
-          <Link to="/contacto" className={styles.offices}>Nuestras Oficinas <img src={arrowIcon} alt="" width={16} height={16} /></Link>
+          <Link data-link="nosotros-contacto-link" to="/contacto" className={styles.offices}>Nuestras Oficinas <img src={arrowIcon} alt="" width={16} height={16} /></Link>
         </article>
         <article>
           <h3>ASPRO-GAMA</h3>

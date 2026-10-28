@@ -37,7 +37,7 @@ export const SmartLink = ({ to, ariaLabel, className, title, children, dataCta, 
             className={className}
             title={title}
             {...(dataCta ? { 'data-cta': dataCta } : {})}
-            {...(dataLink ? { 'data-link': dataLink } : {})}
+            {...(!dataCta && dataLink ? { 'data-link': dataLink } : {})}
         >
             {children}
         </NavLink>

@@ -38,7 +38,7 @@ export const navbarMenu: NavItem[] = [
         to: '/contacto',
         label: 'Contacto',
         title: 'Contactate con Vitamet',
-        dataCta: 'navbar-contacto-link',
+        dataLink: 'navbar-contacto-link',
         type: 'route',
     },
 ];

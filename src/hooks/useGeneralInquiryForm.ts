@@ -1,5 +1,6 @@
 import { useRef, useState, type ChangeEvent, type FormEvent } from 'react';
 import { getFormUtm } from '../utils/formUtm';
+import { trackFormSuccess } from '../utils/tracking';
 import { isSubmissionBlocked, submitForm, type FormSubmissionState } from '../utils/formSubmission';
 import { hasFormControlCharacters, isValidFormEmail, isValidFormName } from '../utils/formValidation';
 
@@ -59,6 +60,7 @@ export function useGeneralInquiryForm() {
     });
     setSubmission(result);
     if (result.status === 'success') {
+      if (!values.website.trim()) trackFormSuccess('consulta_contacto');
       setValues(initialValues);
       setErrors({});
       form.reset();

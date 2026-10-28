@@ -10,7 +10,7 @@ export function Footer() {
     return (
         <footer className="footer">
             <div className="footer-contenido">
-                <SmartLink to="/" aria-label="Ir a la página de inicio" data-link="footer-logo-btn">
+                <SmartLink to="/" aria-label="Ir a la página de inicio" dataLink="footer-logo-btn">
                     <img src={logo} alt="Logotipo de Vitamet en el pie de página" loading="lazy" decoding="async" />
                 </SmartLink>
 
@@ -72,7 +72,7 @@ export function Footer() {
                 <div className="policy-container">
                     <p>© 2026 VitaMet. All rights reserved.</p>
 
-                    <SmartLink to="/politica-privacidad" title="Ver el aviso de privacidad" data-link="footer-politica-link">
+                    <SmartLink to="/politica-privacidad" title="Ver el aviso de privacidad" dataLink="footer-politica-link">
                         Privacy Policy
                     </SmartLink>
                 </div>

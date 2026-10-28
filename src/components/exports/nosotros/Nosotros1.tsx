@@ -15,8 +15,8 @@ export function Nosotros1() {
           <h1 id="nosotros-title">Liderando el Futuro del Bienestar y la Seguridad</h1>
           <p>Más de 25 años transformando la industria aseguradora a través de la innovación, el compromiso humano y una visión inquebrantable de excelencia corporativa.</p>
           <div className={styles.actions}>
-            <Link to="/" className={styles.primary}>Conoce al Equipo</Link>
-            <a href="#nosotros-hitos" className={styles.secondary}>Ver Logros</a>
+            <Link to="/" data-link="nosotros-inicio-btn" className={styles.primary}>Conoce al Equipo</Link>
+            <a data-link="nosotros-hitos-btn" href="#nosotros-hitos" className={styles.secondary}>Ver Logros</a>
           </div>
         </div>
       </div>

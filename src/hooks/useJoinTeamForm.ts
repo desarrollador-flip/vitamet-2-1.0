@@ -1,5 +1,6 @@
 import { useRef, useState, type ChangeEvent, type FormEvent } from 'react';
 import { getFormUtm } from '../utils/formUtm';
+import { trackFormSuccess } from '../utils/tracking';
 import { isSubmissionBlocked, submitForm, type FormSubmissionState } from '../utils/formSubmission';
 import { isValidFormName } from '../utils/formValidation';
 
@@ -84,6 +85,7 @@ export function useJoinTeamForm() {
     const result = await submitForm('cv', body);
     setSubmission(result);
     if (result.status === 'success') {
+      if (!values.website.trim()) trackFormSuccess('cv_contacto');
       setValues(initialValues);
       setErrors({});
       form.reset();

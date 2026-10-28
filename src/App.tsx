@@ -1,6 +1,7 @@
 import { lazy, Suspense, useEffect } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { getFormUtm } from './utils/formUtm';
+import { useClickTracking } from './hooks/useClickTracking';
 
 import { Navbar } from './components/common/Navbar';
 import { Footer } from './components/common/Footer';
@@ -19,6 +20,7 @@ import { TitleSEO } from './utils/TitleSEO';
 const AgentePage = lazy(() => import('./components/pages/AgentePage'));
 
 function App() {
+  useClickTracking();
   const { search } = useLocation();
   useEffect(() => { getFormUtm(search); }, [search]);
 

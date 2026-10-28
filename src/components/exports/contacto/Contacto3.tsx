@@ -24,7 +24,7 @@ export function Contacto3() {
               </li>
             ))}
           </ul>
-          <a className={styles.phone} href="tel:+527778852380">
+          <a data-cta="contacto-telefono-link" className={styles.phone} href="tel:+527778852380">
             <span className={styles.icon}><img src={phoneIcon} alt="" /></span>
             <div className={styles.officeText}><strong>Llámanos</strong><span>{datosContacto.telefono.title}</span></div>
           </a>

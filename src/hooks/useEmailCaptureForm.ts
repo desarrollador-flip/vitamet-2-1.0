@@ -1,5 +1,6 @@
 import { useRef, useState, type ChangeEvent, type FormEvent } from 'react';
 import { getFormUtm } from '../utils/formUtm';
+import { trackFormSuccess } from '../utils/tracking';
 import { isSubmissionBlocked, submitForm, type EmailFormSource, type FormSubmissionState } from '../utils/formSubmission';
 import { isValidFormEmail } from '../utils/formValidation';
 
@@ -34,6 +35,7 @@ export function useEmailCaptureForm(formSource: EmailFormSource) {
     });
     setSubmission(result);
     if (result.status === 'success') {
+      if (!values.website.trim()) trackFormSuccess(formSource);
       setValues({ email: '', website: '' });
       form.reset();
     }

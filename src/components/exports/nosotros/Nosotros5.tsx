@@ -10,8 +10,8 @@ export function Nosotros5() {
           <p>Únete a un equipo de élite o permite que nuestros expertos diseñen un plan a tu medida. El momento es ahora.</p>
         </div>
         <div className={styles.actions}>
-          <Link className={styles.primary} to="/contacto">Quiero ser Agente</Link>
-          <Link className={styles.secondary} to="/contacto">Solicitar Asesoría</Link>
+          <Link data-cta="nosotros-contacto-agente-btn" className={styles.primary} to="/contacto">Quiero ser Agente</Link>
+          <Link data-cta="nosotros-contacto-asesoria-btn" className={styles.secondary} to="/contacto">Solicitar Asesoría</Link>
         </div>
       </div>
     </section>

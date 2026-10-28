@@ -25,7 +25,7 @@ export const BurgerMenu = () => {
                 <ul>
                     {navbarMenu.map((item) => (
                         <li key={item.id}>
-                            <NavItems item={item} onAfterNavigate={closeMenu} />
+                            <NavItems item={{ ...item, dataLink: item.dataLink?.replace(/^navbar-/, 'burger-'), dataCta: item.dataCta?.replace(/^navbar-/, 'burger-') }} onAfterNavigate={closeMenu} />
                         </li>
                     ))}
                 </ul>

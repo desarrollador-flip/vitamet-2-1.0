@@ -38,11 +38,12 @@ export const BotonNav = ({ to, ariaLabel, className, title, children, dataCta, d
     return (
         <button
             onClick={handleClick}
+            data-tracking-url={to.startsWith('#') && location.pathname !== '/' ? `/${to}` : to}
             className={className}
             title={title}
             aria-label={ariaLabel}
             {...(dataCta ? { 'data-cta': dataCta } : {})}
-            {...(dataLink ? { 'data-link': dataLink } : {})}
+            {...(!dataCta && dataLink ? { 'data-link': dataLink } : {})}
         >
             {children}
         </button>

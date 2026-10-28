@@ -1,4 +1,5 @@
 import type { MouseEvent } from 'react';
+import { useLocation } from 'react-router-dom';
 
 import { useNavActions } from '../../hooks/useNavActions';
 
@@ -15,6 +16,7 @@ interface NavItemsProps {
 
 export const NavItems = ({ item, onAfterNavigate }: NavItemsProps) => {
     const { handleNavigation, isAnchorActive } = useNavActions();
+    const { pathname } = useLocation();
 
     const handleClick = (e: MouseEvent<HTMLAnchorElement>) => {
         handleNavigation(e, item);
@@ -32,10 +34,14 @@ export const NavItems = ({ item, onAfterNavigate }: NavItemsProps) => {
         return (
             <a
                 href={item.to}
+                data-tracking-url={pathname === '/' ? item.to : `/${item.to}`}
                 /* activar solo si todas las rutas son anchors */
                 /* className={isAnchorActive(item) ? 'active' : ''} */
                 aria-current={isAnchorActive(item) ? 'page' : undefined}
-                {...commonProps}
+                title={item.title}
+                onClick={handleClick}
+                data-cta={item.dataCta}
+                data-link={!item.dataCta ? item.dataLink : undefined}
             >
                 {item.label}
             </a>

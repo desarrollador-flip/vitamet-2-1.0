@@ -19,10 +19,10 @@ export function Servicios1() {
             valoras en cada etapa de tu vida.
           </p>
           <div className={styles.actions}>
-            <a className={styles.primary} href="#portafolio">
+            <a data-link="servicios-portafolio-btn" className={styles.primary} href="#portafolio">
               Explorar Servicios <img src={arrow} alt="" width={16} height={16} />
             </a>
-            <Link className={styles.secondary} to="/">
+            <Link data-link="servicios-inicio-metodologia-btn" className={styles.secondary} to="/">
               Nuestra Metodología
             </Link>
           </div>

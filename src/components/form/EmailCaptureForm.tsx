@@ -15,7 +15,7 @@ interface EmailCaptureFormProps {
 export function EmailCaptureForm({ id, label, buttonText, variant, formSource }: EmailCaptureFormProps) {
   const { values, error, submission, handleChange, handleSubmit, isSubmitting, isBlocked } = useEmailCaptureForm(formSource);
 
-  return <form className={`${styles.form} ${styles[variant]}`} onSubmit={handleSubmit} aria-busy={isSubmitting} noValidate>
+  return <form data-form-id={formSource} className={`${styles.form} ${styles[variant]}`} onSubmit={handleSubmit} aria-busy={isSubmitting} noValidate>
     <label htmlFor={id}>{label}</label>
     <div className={styles.controls}>
       <input id={id} name="email" type="email" autoComplete="email" maxLength={254} placeholder={label} value={values.email} onChange={handleChange} disabled={isSubmitting} required aria-invalid={Boolean(error)} aria-describedby={error ? `${id}-error` : undefined} />

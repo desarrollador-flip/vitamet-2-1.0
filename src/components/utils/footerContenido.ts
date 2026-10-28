@@ -38,7 +38,7 @@ export const enlacesRapidos: NavItem[] = [
         to: '/contacto',
         label: 'Contacto',
         title: 'Contactate con Vitamet',
-        dataCta: 'footer-contacto-link',
+        dataLink: 'footer-contacto-link',
         type: 'route',
     },
 ];

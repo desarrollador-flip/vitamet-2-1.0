@@ -16,7 +16,7 @@ export function Blog2() {
             <strong>VitaMet Editorial</strong>
             <span><time dateTime="2023-10-24">Oct 24, 2023</time> • 8 min read</span>
           </div>
-          <Link to="/" className={styles.more}>Leer más <span aria-hidden="true">→</span></Link>
+          <Link data-link="blog-inicio-destacado-link" to="/" className={styles.more}>Leer más <span aria-hidden="true">→</span></Link>
         </div>
       </div>
     </section>
