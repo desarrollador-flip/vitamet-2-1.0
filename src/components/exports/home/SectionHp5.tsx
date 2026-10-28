@@ -17,7 +17,7 @@ export const SectionHp5 = () => {
 
       <div className={styles.rutasContainer}>
         {rutasSectionHp5.map((ruta, index) => (
-          <SmartLink to={ruta.link} dataLink={ruta.dataLink} key={ruta.id} className={`${styles.ruta} ${styles[`ruta${index + 1}`]}`}>
+          <SmartLink to={ruta.link} dataLink={ruta.dataLink} key={ruta.id} ariaLabel={`leer más sobre ${ruta.titulo}`} className={`${styles.ruta} ${styles[`ruta${index + 1}`]}`}>
             <div className={styles.rutaHeader}>
               <img src={ruta.img} alt={ruta.titulo} />
 
@@ -29,9 +29,9 @@ export const SectionHp5 = () => {
 
               <p>{ruta.texto}</p>
 
-              <SmartLink to={ruta.link} dataLink={ruta.dataLink} ariaLabel={`leer más sobre ${ruta.titulo}`} className={styles.link}>
-                Leer más <img src={icono1} alt={`leer más sobre ${ruta.titulo}`} />
-              </SmartLink>
+              <span className={styles.link}>
+                Leer más <img src={icono1} alt="" />
+              </span>
             </div>
           </SmartLink>
         ))}

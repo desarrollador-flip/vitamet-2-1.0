@@ -14,6 +14,7 @@ globalThis.IntersectionObserver = class { observe() {} disconnect() {} };
 window.matchMedia = (query) => ({ matches: false, media: query, addEventListener() {}, removeEventListener() {} });
 window.scrollTo = () => {};
 globalThis.requestAnimationFrame = window.requestAnimationFrame.bind(window);
+globalThis.cancelAnimationFrame = window.cancelAnimationFrame.bind(window);
 const { createRoot } = await import('react-dom/client');
 const { MemoryRouter, BrowserRouter, Routes, Route } = await import('react-router-dom');
 const { HelmetProvider } = await import('react-helmet-async');
@@ -25,6 +26,7 @@ const { Navbar } = await import('../src/components/common/Navbar.tsx');
 const { BurgerMenu } = await import('../src/components/common/BurgerMenu.tsx');
 const { Footer } = await import('../src/components/common/Footer.tsx');
 const { HomePage } = await import('../src/components/pages/HomePage.tsx');
+const { SectionHp5 } = await import('../src/components/exports/home/SectionHp5.tsx');
 const { NosotrosPage } = await import('../src/components/pages/NosotrosPage.tsx');
 const { ServiciosPage } = await import('../src/components/pages/ServiciosPage.tsx');
 const { BlogPage } = await import('../src/components/pages/BlogPage.tsx');
@@ -50,6 +52,7 @@ async function click(element, options = {}) {
   await act(async () => element.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, ...options })));
 }
 function assertTaggedLinks() {
+  assert.equal(container.querySelectorAll('a a').length, 0, 'Links must not contain other links');
   const links = container.querySelectorAll('a, button[data-tracking-url]');
   assert.ok(links.length > 0);
   for (const link of links) {
@@ -242,11 +245,28 @@ test('los datos de listas y clones conservan IDs estables y un único evento por
   assert.equal(window.dataLayer[0].click_id, 'blog-inicio-presupuesto-link');
 });
 
-test('Home conserva sus IDs compartidos y el marcado anidado no duplica eventos', async () => {
-  await render(tracked(h(HomePage)));
-  const innerLink = container.querySelector('a a[data-link="home-nosotros-link"]');
-  await click(innerLink.querySelector('img'));
-  assert.deepEqual(window.dataLayer, [{ event: 'click_link', click_id: 'home-nosotros-link', page_path: '/', link_url: '/nosotros' }]);
+test('Home conserva un único enlace por tarjeta, sin enlaces anidados ni eventos duplicados', async () => {
+  await render(tracked(h(SectionHp5), BrowserRouter));
+  assertTaggedLinks();
+  const cards = container.querySelectorAll('a');
+  assert.equal(cards.length, 3, 'One semantic link for each solution card');
+  for (const card of cards) {
+    assert.equal(card.getAttribute('href'), '/nosotros');
+    assert.equal(card.getAttribute('data-link'), 'home-nosotros-link');
+    assert.equal(card.querySelectorAll('a, button').length, 0);
+    assert.match(card.getAttribute('aria-label'), /leer más sobre/);
+    const readMore = card.querySelector('span');
+    assert.match(readMore.textContent, /Leer más/);
+    assert.equal(readMore.hasAttribute('data-link'), false);
+    assert.equal(readMore.hasAttribute('data-cta'), false);
+    for (const target of [card.querySelector('img'), card.querySelector('h3'), readMore]) {
+      const sourcePath = window.location.pathname;
+      window.dataLayer = [];
+      await click(target);
+      assert.equal(window.location.pathname, '/nosotros');
+      assert.deepEqual(window.dataLayer, [{ event: 'click_link', click_id: 'home-nosotros-link', page_path: sourcePath, link_url: '/nosotros' }]);
+    }
+  }
 });
 
 test('tarjeta de agente: atributos reales, clic externo único y perfil sin datos personales', async (t) => {

@@ -100,13 +100,13 @@
 
 .ruta1 h3,
 .ruta3 h3,
-.ruta1 a,
-.ruta3 a {
+.ruta1 .link,
+.ruta3 .link {
   color: var(--blue-color);
 }
 
 .ruta2 h3,
-.ruta2 a {
+.ruta2 .link {
   color: var(--green-color);
 }
 
