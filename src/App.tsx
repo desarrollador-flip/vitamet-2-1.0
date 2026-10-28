@@ -10,9 +10,11 @@ import { ServiciosPage } from './components/pages/ServiciosPage';
 import { BlogPage } from './components/pages/BlogPage';
 import { ContactoPage } from './components/pages/ContactoPage';
 import { ReclutaPage } from './components/pages/ReclutaPage';
+import { PoliticaPrivacidadPage } from './components/pages/PoliticaPrivacidadPage';
 
 import { Cargando } from './components/utils/Cargando';
 import { ScrollToTop } from './utils/scrollToTop';
+import { TitleSEO } from './utils/TitleSEO';
 
 const AgentePage = lazy(() => import('./components/pages/AgentePage'));
 
@@ -23,6 +25,10 @@ function App() {
   return (
     <>
       <ScrollToTop />
+      <TitleSEO
+        title="Vitamet"
+        description="Te brindamos asesoramiento financiero y patrimonial a medida. Descubre cómo optimizar tus inversiones y asegurar tu estabilidad económica. ¡Contáctanos hoy!"
+      />
 
       <Navbar />
 
@@ -40,7 +46,7 @@ function App() {
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/contacto" element={<ContactoPage />} />
           <Route path="/recluta" element={<ReclutaPage />} />
-          <Route path="/politica-privacidad" element={<HomePage />} />
+          <Route path="/politica-privacidad" element={<PoliticaPrivacidadPage />} />
           <Route path="/agentes/:slug" element={<AgentePage />}></Route>
         </Routes>
       </Suspense>
