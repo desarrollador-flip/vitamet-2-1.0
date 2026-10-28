@@ -4,7 +4,7 @@ Implementación para React 18 + TypeScript + Vite 5 y React Router 7. Puntos de 
 
 ## GTM
 
-Se conserva íntegramente la instalación existente de `GTM-WD5NRH4X` en `index.html`, tanto el script como el fallback noscript. No se instalaron dependencias, otras etiquetas ni contenedores; no se hicieron cambios en GTM/GA4/Ads, commits ni despliegues.
+Se conserva íntegramente la instalación existente de `GTM-WD5NRH4X` en `index.html`, tanto el script como el fallback noscript. No se añadieron dependencias al proyecto, otras etiquetas ni contenedores; no se hicieron cambios en GTM/GA4/Ads, commits ni despliegues.
 
 La configuración remota y las conversiones activas no se pueden deducir del repositorio. No se encontraron emisores propios equivalentes antes de esta tarea. Preview, DebugView y validación de producción quedan pendientes.
 
@@ -41,11 +41,11 @@ La emisión está en la rama `result.status === 'success'` de cada hook, despué
 
 ## Inventario de clics
 
-44 identificadores `data-link` y 19 identificadores `data-cta`, contando una vez los IDs compartidos y las copias de carrusel. Los IDs del burger se derivan de los datos del menú con ubicación `burger`.
+44 identificadores `data-link` y 19 identificadores `data-cta`, contando una vez los IDs compartidos y las copias de carrusel. El inventario se contrastó con el código actual después del QA final y sigue coincidiendo, junto con los cuatro `form_id` de la sección Formularios. Los IDs del burger se derivan de los datos del menú con ubicación `burger`.
 
 Se conservan todos los valores de ID preexistentes, incluidas las excepciones de nomenclatura `home-btn-2` y `home-unete-btn-1`. `navbar-contacto-link` y `footer-contacto-link` pasan de CTA a enlace ordinario porque representan navegación de menú. El menú móvil deja de usar los IDs de escritorio y deriva cinco `burger-*`. Los botones Únete y las acciones existentes de agente mantienen sus CTA, incluida la acción compartir/copiar tarjeta.
 
-Las tarjetas de Home conservan `home-nosotros-link`; se etiqueta también su enlace exterior. El ID sigue siendo agregado y no distingue productos ni sección. Se conservan los enlaces anidados preexistentes; el listener elige solo el más cercano. Las listas de servicios, artículos y vacantes guardan IDs estáticos en sus datos originales; los clones no generan IDs aleatorios.
+Las tres tarjetas de Home tienen ahora un único enlace semántico por tarjeta: el `SmartLink` exterior conserva el destino, `home-nosotros-link` y la etiqueta accesible. Leer más es un `span` sin enlace ni tracking independiente; los selectores de su CSS Module se ajustaron para conservar los colores y el diseño. Se mantienen la navegación de toda la tarjeta y un único evento por clic. El ID sigue siendo agregado y no distingue productos ni sección. Las listas de servicios, artículos y vacantes guardan IDs estáticos en sus datos originales; los clones no generan IDs aleatorios.
 
 | Ubicación | `data-link` | `data-cta` |
 | --- | --- | --- |
@@ -104,14 +104,17 @@ Modificados:
 - `src/components/exports/servicios/Servicios4.tsx`
 - `tests/forms.test.mjs`
 - `package.json`
+- `src/styles/modules/home/sectionHp5.module.css` (corrección del QA final)
+- `src/styles/common/fuentes.css` (corrección del QA final)
 
-No se eliminaron archivos. No se modificaron index.html, main.tsx, estilos, backend, validadores, formSubmission ni formUtm. Los cambios locales que ya existían se conservaron.
+No se eliminaron archivos. No se modificaron index.html, main.tsx, backend, validadores, formSubmission ni formUtm. El QA final corrigió únicamente `SectionHp5.tsx`, su CSS Module, `fuentes.css` y `tests/tracking.test.mjs`; los demás cambios locales que ya existían se conservaron. Esta actualización documental modifica exclusivamente `TRACKING.md`.
 
 ## Verificación
 
 Pruebas añadidas e integradas en `npm test` usando node:test, React DOM y jsdom ya existentes, con fetch simulado:
 
 - Un evento por clic en hijos/SVG, CTA prioritario y elementos etiquetados anidados.
+- Ausencia de enlaces anidados en las páginas revisadas; tres enlaces semánticos en las tres tarjetas de Home, con destino e ID conservados y un evento por clic en imagen, título y Leer más.
 - StrictMode, re-render, desmontaje, remontaje y conservación/inicialización de dataLayer.
 - Navegación real, preventDefault, anchors, origen antes de navegar, botones con destino explícito y cierre del burger.
 - Atributos reales y cobertura de enlaces en las siete páginas estáticas, navbar, burger, footer y perfil de agente.
@@ -121,20 +124,26 @@ Pruebas añadidas e integradas en `npm test` usando node:test, React DOM y jsdom
 - Cuatro form_id distintos: éxito, doble submit, errores, validación, red fallida, parcial y honeypot. Las pruebas existentes también comprueban timeout, HTTP 200 con error y resultados inciertos.
 - Ruta actual al confirmar y conservación de reset/navegación si analytics lanza un error.
 
-Resultados en este entorno:
+El entorno jsdom de `tests/tracking.test.mjs` expone ahora `globalThis.cancelAnimationFrame = window.cancelAnimationFrame.bind(window)`, junto con `requestAnimationFrame`. Esto corrige los fallos de desmontaje de `react-helmet-async` detectados durante el QA inicial.
+
+La referencia en `src/styles/common/fuentes.css` se corrigió a `/fonts/hankenVariable.woff2`, coincidente en mayúsculas y minúsculas con el archivo real de `public/fonts/`. El build final ya no advierte que la fuente no se resuelve.
+
+Resultados del QA técnico final del 28 de octubre de 2026: copia temporal del estado corregido en el filesystem de Ubuntu, con Node `v22.23.4` y npm `10.9.9` desde NVM de Ubuntu sobre WSL2. Se excluyeron `.git`, `node_modules`, `dist`, credenciales y archivos `.env` privados. Las dependencias se instalaron mediante `npm ci` en esa copia, sin utilizar ni modificar el `node_modules` de Windows. Los resultados se contrastaron con los logs conservados del QA; no se volvieron a ejecutar pruebas ni envíos para esta actualización documental.
 
 | Comprobación | Resultado |
 | --- | --- |
-| `npm run lint` | Bloqueado antes de iniciar: WSL 1 is not supported / Could not determine Node.js install directory |
-| `npm run build` | Mismo bloqueo de Node/WSL |
-| `npm test` | Mismo bloqueo de Node/WSL; suites no ejecutadas |
-| Sintaxis de los dos archivos de tests | Compilación sintáctica JavaScript sin ejecutar, excluyendo imports estáticos; correcta |
+| `npm ci` | Aprobado, salida 0; 245 paquetes instalados en la copia temporal |
+| `npm test` | Aprobado, salida 0; el resumen del runner informa 3 archivos correctos de 3, 0 fallidos, 0 omitidos y 0 cancelados |
+| `npm run lint` | Aprobado, salida 0; sin errores ni advertencias |
+| `npm run build` | Aprobado, salida 0; TypeScript y Vite correctos, 218 módulos transformados, sin advertencia de fuente no resuelta |
 | Revisión estática de enlaces y diferencias | Completada; no se encontraron enlaces sin atributos en las definiciones revisadas |
-| GTM, backend y estilos frente a captura inicial | Contenido idéntico |
+| Integridad del QA final | Comparación SHA-256 de 252 archivos: solo cambiaron los cuatro archivos corregidos; los 248 restantes conservaron su contenido y la copia validada coincidió con el original corregido |
 | `git -c core.whitespace=cr-at-eol diff --check` | Sin errores; se respetaron los finales CRLF preexistentes |
 | GTM Preview / GA4 DebugView | Pendientes; no se verificó producción |
 
-No se afirma que lint, TypeScript, build o suites de pruebas hayan pasado. Ejecutar los tres comandos en un entorno Node compatible antes de integrar los cambios.
+La comprobación de regresión de Home se ejecutó también contra el componente anterior, exclusivamente en la copia temporal: detectó los tres enlaces anidados y falló con `expected: 0` / `actual: 3`. Después se restauró el componente corregido y pasaron `npm test`, lint y build. Ese fallo controlado confirma que la prueba detecta la estructura inválida anterior; no es un fallo de la versión final.
+
+El bloqueo anterior de Node/WSL y los fallos iniciales del arnés jsdom quedaron resueltos. La copia temporal y su caché npm se eliminaron; se conservaron los logs y las evidencias del QA. Las pruebas usan respuestas simuladas: no se hicieron envíos reales ni solicitudes a servicios externos del proyecto, y estos resultados no acreditan recepción de eventos ni configuración de conversiones en Google.
 
 ## Configuración manual en GTM/GA4
 
@@ -155,6 +164,6 @@ No se añadió consentimiento, cookies ni banner ficticio. Si corresponde gestio
 
 - Footer enlaza a `/terminos-condiciones`, `/sostenibilidad` y `/carrera` sin rutas registradas.
 - Varios Leer más, Conoce al Equipo, Nuestra Metodología y Ver Casos de Éxito apuntan a `/`; las soluciones de Home apuntan a `/nosotros`. Se conservan los destinos provisionales y los IDs nuevos describen el destino real.
-- Home mantiene enlaces anidados y un ID compartido que impide distinguir cada tarjeta; corregir estructura o granularidad requiere una tarea aparte.
+- Home conserva un ID compartido que impide distinguir cada tarjeta en los informes; cambiar esa granularidad requiere una decisión aparte.
 - No se comprobó la disponibilidad real de endpoints/Airtable ni se hicieron envíos reales. La cobertura de tests usa respuestas simuladas.
 - Configuración remota, duplicados, conversiones, consentimiento y recepción real en GA4 pendientes de revisión externa.
